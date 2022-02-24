@@ -8,7 +8,7 @@ const visitSchema = new mongoose.Schema({
   },
   visited: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   name: Object,
   tld: [String],
