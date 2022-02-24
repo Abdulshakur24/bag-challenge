@@ -8,7 +8,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { fetchCountries } from './redux-app/slicers/home'
-import { fetchAllVisits } from './redux-app/slicers/visit'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 
