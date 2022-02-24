@@ -13,7 +13,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 
 store.dispatch(fetchCountries())
-store.dispatch(fetchAllVisits())
 
 let persistor = persistStore(store)
 
