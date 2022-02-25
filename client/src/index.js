@@ -8,22 +8,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { fetchCountries } from './redux-app/slicers/home'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
-
 store.dispatch(fetchCountries())
-
-let persistor = persistStore(store)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Theme>
         <Router>
-          <PersistGate persistor={persistor}>
-            <ToastContainer />
-            <App />
-          </PersistGate>
+          <ToastContainer />
+          <App />
         </Router>
       </Theme>
     </Provider>
