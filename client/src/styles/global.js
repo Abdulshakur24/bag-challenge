@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle`
       --whiteSmoke: #FAFAFA;
       --white: #FFFFFF;
       --gray: #F1F1F1;
+      --toastify-color-info: #111;
   }
   [data-theme="dark"] {
       --black: #FFFFFF;
