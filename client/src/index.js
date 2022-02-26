@@ -7,7 +7,7 @@ import Theme from './styles/Theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { fetchCountries } from './redux-app/slicers/home'
+import { fetchCountries } from './redux-app/slicers/toVisit'
 store.dispatch(fetchCountries())
 
 ReactDOM.render(
