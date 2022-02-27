@@ -8,7 +8,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { fetchCountries } from './redux-app/slicers/toVisit'
-store.dispatch(fetchCountries())
+
+store.dispatch(fetchCountries('europe'))
 
 ReactDOM.render(
   <React.StrictMode>
