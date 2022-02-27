@@ -38,5 +38,8 @@ export const GlobalStyles = createGlobalStyle`
 
   }
   
- 
+ .MuiPaper-root {
+   max-width: 246px !important;
+   width: 100%;
+ }
 `
