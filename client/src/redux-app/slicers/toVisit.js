@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const url = 'https://restcountries.com/v3.1/region/europe'
-
 export const fetchCountries = createAsyncThunk(
   'countries/fetchCountries',
-  async () => {
-    const response = await axios.get(url)
+  async (slug) => {
+    const response = await axios.get(
+      `https://restcountries.com/v3.1/region/${slug}`,
+    )
     return response.data
   },
 )
