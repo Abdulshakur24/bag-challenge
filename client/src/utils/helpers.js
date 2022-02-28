@@ -10,7 +10,8 @@ const options = {
   progress: undefined,
 }
 
-export const toastInfo = (info) => toast.info(info, options)
+export const toastInfo = (info, position = 'top-right') =>
+  toast.info(info, { ...options, position })
 
-export const toastError = (error) =>
-  toast.error(error, { ...options, position: 'top-center' })
+export const toastError = (error, position = 'top-center') =>
+  toast.error(error, { ...options, position })
