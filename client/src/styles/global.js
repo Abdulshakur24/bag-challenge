@@ -42,4 +42,10 @@ export const GlobalStyles = createGlobalStyle`
    max-width: 246px !important;
    width: 100%;
  }
+ @media screen and (min-width: 1024px) {
+  .MuiPaper-root {
+   max-width: 200px !important;
+   width: 100%;
+ }
+ }
 `
