@@ -22,7 +22,7 @@ const signUp = async ({ name, email, password }, res) => {
   })
 
   const token = jwt.sign({ user }, process.env.JWT_KEY, {
-    expiresIn: '24h',
+    expiresIn: '7d',
   })
 
   const result = {
@@ -48,7 +48,7 @@ const signIn = async (email, password, res) => {
     return res.send(cached)
 
   const token = jwt.sign({ user }, process.env.JWT_KEY, {
-    expiresIn: '24h',
+    expiresIn: '7d',
   })
 
   if (await confirmPassword(password, user.hashed_password)) {
