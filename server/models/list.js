@@ -8,7 +8,7 @@ const visitSchema = new mongoose.Schema({
   },
   visited: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   name: Object,
   tld: [String],
@@ -47,4 +47,4 @@ const visitSchema = new mongoose.Schema({
   postalCode: Object,
 })
 
-module.exports = mongoose.model('List', visitSchema)
+module.exports = mongoose.model('myList', visitSchema)
