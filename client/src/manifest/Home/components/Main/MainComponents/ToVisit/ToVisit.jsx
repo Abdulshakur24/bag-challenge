@@ -59,7 +59,7 @@ function ToVisit() {
       setSortBy(matched);
     };
     handleRenderVisit();
-  }, [toVisits.data]);
+  }, [toVisits.data, visited.data]);
 
   const [sortBy, setSortBy] = useState([]);
   const [isNameSorted, setIsNameSorted] = useState(false);
