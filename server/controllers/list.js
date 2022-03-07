@@ -21,11 +21,11 @@ const postList = async (authorization, post) => {
   const response = await List.create({ user: userId, ...post })
   return response
 }
-const updateList = async (authorization, { myList }, id, res) => {
+const updateList = async (authorization, { visited }, id, res) => {
   const userId = extractUserIdFromToken(authorization)
   const { acknowledged } = await List.findById(id)
     .where({ user: userId })
-    .updateOne({ myList })
+    .updateOne({ visited: Boolean(visited) })
   if (acknowledged) {
     return res.send(await List.findOne({ _id: id, user: userId }))
   }
