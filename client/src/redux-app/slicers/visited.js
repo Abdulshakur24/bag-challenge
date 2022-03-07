@@ -12,7 +12,7 @@ const axios = Axios.create({
   },
 })
 
-export const postVisit = createAsyncThunk('post', async (object) => {
+export const postVisit = createAsyncThunk('visit/post', async (object) => {
   const response = await axios.post('/post', object)
   return response.data
 })
@@ -56,7 +56,5 @@ export const visitSlice = createSlice({
       })
   },
 })
-
-export const { loadVisit } = visitSlice.actions
 
 export default visitSlice.reducer
