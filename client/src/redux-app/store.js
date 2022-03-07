@@ -11,6 +11,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './slicers/user'
 import toVisitReducer from './slicers/toVisit'
 import visitReducer from './slicers/visited'
+import listReducer from './slicers/list'
 
 // const persistConfig = {
 //   key: 'root',
@@ -31,6 +32,7 @@ export default configureStore({
     user: userReducer,
     toVisit: toVisitReducer,
     visited: visitReducer,
+    list: listReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({
