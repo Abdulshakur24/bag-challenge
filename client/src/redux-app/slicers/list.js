@@ -6,7 +6,9 @@ const isProduction = process.env.NODE_ENV === 'production'
 const token = localStorage.getItem('token')
 
 const axios = Axios.create({
-  baseURL: isProduction ? 'api/list' : 'http://localhost:5010/api/list/',
+  baseURL: isProduction
+    ? 'https://bag-challenge-2022.herokuapp.com/api/list'
+    : 'http://localhost:5010/api/list/',
   headers: {
     Authorization: `Bearer ${token}`,
   },
