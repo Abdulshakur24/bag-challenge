@@ -35,6 +35,13 @@ function Country(props) {
     dispatch(updateList({ id: props.id, visited: props.info.visited }));
   };
 
+  const handleCurrencies = (currencies) => {
+    for (const key of Object.keys(currencies)) {
+      return key;
+    }
+    return null;
+  };
+
   return (
     <CountryWrapper
       transition={{ duration: 0.25 }}
@@ -44,15 +51,15 @@ function Country(props) {
     >
       <CountryContainer onClick={handleNavigator}>
         <Top>
-          <Image src={props.flags.svg} alt={props.name.common} />
+          <Image src={props.flags.png} alt={props.name.common} />
         </Top>
         <Bottom>
           <Name>{props.name.common}</Name>
           <Population>
             Population: {props.population.toLocaleString()}
           </Population>
-          <Region>Region: {props.region}</Region>
           <Capital>Capital: {props.capital[0]}</Capital>
+          <Region>Currency: {handleCurrencies(props.info.currencies)}</Region>
           <div onClick={(e) => e.stopPropagation()} className="icons">
             <DeleteIcon onClick={handleDelete} className="icon deleteIcon" />
             <CheckIcon
