@@ -27,7 +27,7 @@ const updateList = async (authorization, { visited }, id, res) => {
     .where({ user: userId })
     .updateOne({ visited: Boolean(visited) })
   if (acknowledged) {
-    return res.send(await List.findOne({ _id: id, user: userId }))
+    return res.send({ message: 'Updated.', id, visited: visited })
   }
   return res.status(403).send('Update failed.')
 }
@@ -36,7 +36,7 @@ const deleteList = async (authorization, id, res) => {
   const userId = extractUserIdFromToken(authorization)
   const { deletedCount } = await List.findById(id).deleteOne({ user: userId })
   if (!deletedCount) return res.status(403).send('No object found to delete.')
-  return res.status(200).send('Successfully deleted.')
+  return res.send({ id, message: 'Successfully deleted.' })
 }
 
 module.exports = {
