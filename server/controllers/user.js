@@ -44,8 +44,8 @@ const signIn = async (email, password, res) => {
 
   if (!user) return res.status(404).send('Account not found.')
 
-  if (cached && (await confirmPassword(password, user.hashed_password)))
-    return res.send(cached)
+  // if (await confirmPassword(password, user.hashed_password))
+  //   return res.send(cached)
 
   const token = jwt.sign({ user }, process.env.JWT_KEY, {
     expiresIn: '7d',
