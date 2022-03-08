@@ -27,12 +27,10 @@ mongoose
 app.use('/api', require('./routes/apiRouter'))
 
 if (isProduction) {
-  app.use(express.static(path.join(__dirname, '../client/build')))
-  app.get('*', (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '../', 'client', 'build', 'index.html'),
-    ),
-  )
+  app.use(express.static(path.join(__dirname, '/../../client/build')))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../client/build', 'index.html'))
+  })
 } else {
   app.get('/', (req, res) =>
     res.send(`Please set your environment to 'production'.`),
