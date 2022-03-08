@@ -7,7 +7,7 @@ import {
   DetailsContainer,
   DetailsContents,
   DetailsWrapper,
-} from "./DetailSyle";
+} from "./DetailStyle";
 import { postList } from "../../../../../../redux-app/slicers/list";
 
 const Details = () => {
