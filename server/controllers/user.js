@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { setCache, getCache } = require('./helpers')
+// const { setCache, getCache } = require('./helpers')
 
 const confirmPassword = async (password, hashedPassword) =>
   await bcrypt.compare(password, hashedPassword)
@@ -34,12 +34,12 @@ const signUp = async ({ name, email, password }, res) => {
     token,
   }
 
-  setCache(email, result)
+  // setCache(email, result)
   return res.send(result)
 }
 
 const signIn = async (email, password, res) => {
-  const cached = await getCache(email)
+  // const cached = await getCache(email)
   const user = await getUserByEmail(email)
 
   if (!user) return res.status(404).send('Account not found.')
@@ -62,7 +62,7 @@ const signIn = async (email, password, res) => {
       token,
     }
 
-    setCache(email, result)
+    // setCache(email, result)
     return res.send(result)
   }
 
