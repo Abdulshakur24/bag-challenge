@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const { body } = require('express-validator')
 const app = express()
-const path = require('path')
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan('dev'))
@@ -31,7 +29,9 @@ app.use('/api', require('./routes/apiRouter'))
 if (isProduction) {
   app.use(express.static('client/build'))
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(
+      path.resolve(__dirname, '../', 'client', 'build', 'index.html'),
+    )
   })
 } else {
   app.get('/', (req, res) =>
