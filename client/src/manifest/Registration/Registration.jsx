@@ -11,6 +11,7 @@ import { Button, Input } from "./RegistrationStyle";
 import { pageMotion } from "../motions";
 import { ReactComponent as BagLogo } from "../../asset/BAG-Logo.svg";
 import { fetchAllVisits } from "../../redux-app/slicers/visited";
+import { fetchAllList } from "../../redux-app/slicers/list";
 
 const controller = new AbortController();
 
@@ -55,6 +56,7 @@ function Registration() {
         dispatch(loadUser(data));
         setIsFetching(false);
         dispatch(fetchAllVisits());
+        dispatch(fetchAllList());
         navigator("/home/to-visit", { replace: true });
       })
       .catch(function (error) {
@@ -73,6 +75,7 @@ function Registration() {
         dispatch(loadUser(data));
         setIsFetching(false);
         dispatch(fetchAllVisits());
+        dispatch(fetchAllList());
         navigator("/home/to-visit", { replace: true });
       })
       .catch(function (error) {
@@ -99,6 +102,7 @@ function Registration() {
             dispatch(loadUser(data));
             setIsFetching(false);
             dispatch(fetchAllVisits());
+            dispatch(fetchAllList());
             navigator("/home/to-visit", { replace: true });
           })
           .catch(function (error) {
