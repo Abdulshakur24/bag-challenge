@@ -42,18 +42,16 @@ export const CountryContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  position: relative;
 `;
 export const Top = styled(motion.div)``;
 
 export const Bottom = styled(motion.div)`
   padding: 36px 30px 55px 30px;
   .icons {
-    position: absolute;
-    z-index: 10;
-    right: 0.625rem;
-    cursor: auto;
+    display: flex;
+    justify-content: flex-end;
 
+    cursor: auto;
     .deleteIcon {
       margin-right: 0.625rem;
     }
