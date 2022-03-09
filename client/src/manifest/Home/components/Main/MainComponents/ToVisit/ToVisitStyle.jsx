@@ -62,8 +62,21 @@ export const ToVisitContents = styled(motion.div)`
       background: transparent;
       color: var(--black);
     }
+
     @media ${(props) => props.theme.breakpoints.lg} {
       max-width: 400px;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    &:active {
+      opacity: 0.8;
     }
   }
 
@@ -102,10 +115,6 @@ export const CountryWrapper = styled(motion.div)`
   border-radius: 8px 8px 0 0;
   max-width: 328px;
   max-height: 450px;
-  /* @media ${(props) => props.theme.breakpoints.lg} {
-    max-width: 260px;
-    max-height: 400px;
-  } */
 `;
 
 export const CountryContainer = styled(motion.div)`
