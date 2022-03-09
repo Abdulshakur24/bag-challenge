@@ -8,7 +8,7 @@ import {
 import Country from "./Country";
 import { useDispatch, useSelector } from "react-redux";
 import { toastError } from "../../../../../../utils/helpers";
-import { Button, Menu, MenuItem, Skeleton } from "@mui/material";
+import { Menu, MenuItem, Skeleton } from "@mui/material";
 import { fetchCountries } from "../../../../../../redux-app/slicers/toVisit";
 import { ReactComponent as SearchLogo } from "../../../../../../asset/SearchIcon.svg";
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
@@ -94,18 +94,18 @@ function ToVisit() {
             onChange={({ target }) => setQuery(target.value.trim())}
           />
         </div>
-        <Button className="sort-button" onClick={handleNameSort}>
+        <button className="sort-button" onClick={handleNameSort}>
           Sort by Name
           {isNameSorted ? (
             <ArrowDownward style={{ marginLeft: "0.5rem" }} />
           ) : (
             <ArrowUpward style={{ marginLeft: "0.5rem" }} />
           )}
-        </Button>
+        </button>
 
-        <Button className="filter-button" onClick={handleClick}>
+        <button className="filter-button" onClick={handleClick}>
           Filter By Region
-        </Button>
+        </button>
         <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
           <MenuItem onClick={() => closeAndFetchByFilter("africa")}>
             Africa
