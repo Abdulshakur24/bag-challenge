@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useState, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -97,12 +96,14 @@ const Details = () => {
   return (
     <DetailsWrapper>
       <DetailsContainer>
-        <Button onClick={() => navigator(-1)}>Go Back</Button>
-        {!isObjectInList() ? (
-          <Button onClick={saveToMyList} className="list-btn">
-            Add to the list
-          </Button>
-        ) : null}
+        <div className="buttons">
+          <button onClick={() => navigator(-1)}>Go Back</button>
+          {!isObjectInList() ? (
+            <button onClick={saveToMyList} className="list-btn">
+              Add to the list
+            </button>
+          ) : null}
+        </div>
         <DetailsContents>
           <div className="flag">
             <img src={details.flags.svg} alt={details.name.common} />
