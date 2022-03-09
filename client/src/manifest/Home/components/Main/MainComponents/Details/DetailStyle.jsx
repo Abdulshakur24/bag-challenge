@@ -9,10 +9,30 @@ export const DetailsWrapper = styled(motion.div)`
 `;
 
 export const DetailsContainer = styled(motion.div)`
-  position: relative;
-  .list-btn {
-    position: absolute;
-    right: 1rem;
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+
+    button {
+      width: 100%;
+      height: 3.125rem;
+      max-width: 13.4375rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--black);
+      background-color: var(--white);
+      box-shadow: 6px 6px 10px 0px rgba(0 0 0 / 0.2);
+      &:active {
+        opacity: 0.8;
+      }
+      @media ${(props) => props.theme.breakpoints.lg} {
+        max-width: 200px;
+        margin-top: unset;
+      }
+    }
   }
 `;
 export const DetailsContents = styled(motion.div)`
