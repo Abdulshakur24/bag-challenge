@@ -1,43 +1,50 @@
-import { configureStore } from '@reduxjs/toolkit'
-// import { persistReducer,
-// FLUSH,
-// REHYDRATE,
-// PAUSE,
-// PERSIST,
-// PURGE,
-// REGISTER,
-//} from 'redux-persist'
-// import storage from 'redux-persist/lib/storage'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from './slicers/user'
 import toVisitReducer from './slicers/toVisit'
-import visitReducer from './slicers/visited'
+import visitedReducer from './slicers/visited'
 import listReducer from './slicers/list'
 
-// const persistConfig = {
-//   key: 'root',
-//   version: 1,
-//   storage,
-// }
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'reduxjs-toolkit-persist'
 
-// const rootReducer = combineReducers({
-//   user: userReducer,
-//   home: homeReducer,
-//   visit: visitReducer,
-// })
+import storage from 'reduxjs-toolkit-persist/lib/storage'
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistConfig = {
+  key: 'root',
+  storage,
+  version: '1.0.1',
+}
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  toVisit: toVisitReducer,
+  visited: visitedReducer,
+  list: listReducer,
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export default configureStore({
-  reducer: {
-    user: userReducer,
-    toVisit: toVisitReducer,
-    visited: visitReducer,
-    list: listReducer,
-  },
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoreActions: [],
-  //     },
-  //   }),
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          false,
+        ],
+      },
+    }),
 })
