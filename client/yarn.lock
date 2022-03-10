@@ -7591,6 +7591,11 @@ redux@^4.0.0, redux@^4.1.2:
   dependencies:
     "@babel/runtime" "^7.9.2"
 
+reduxjs-toolkit-persist@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/reduxjs-toolkit-persist/-/reduxjs-toolkit-persist-7.2.1.tgz#5761d891e984546dd056bb801b09625fda202de4"
+  integrity sha512-1gu9Qid0qXlsM4a2D8eHx/YOwa7I0lgAXqM0KYQoX2RA+KMezkq5wkJKEMLoUkpqVuWYHRdU7auS2/jFVsR0gQ==
+
 regenerate-unicode-properties@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.0.1.tgz#7f442732aa7934a3740c779bb9b3340dccc1fb56"
