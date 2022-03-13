@@ -78,6 +78,16 @@ const Details = () => {
     return langs;
   };
 
+  const concatSentence = (array = []) => {
+    let sentence = "";
+    for (let i = 0; i < array.length; i++) {
+      if (array[i + 1] === undefined) {
+        sentence += array[i] + ".";
+      } else sentence += array[i] + ", ";
+    }
+    return sentence;
+  };
+
   const saveToMyList = () => {
     dispatch(postList(details));
   };
@@ -146,9 +156,7 @@ const Details = () => {
               </div>
               <div className="display">
                 <h4>Languages: </h4>
-                <p>
-                  {handleLanguages(details.languages).map((string) => string)}
-                </p>
+                <p>{concatSentence(handleLanguages(details.languages))}</p>
               </div>
             </div>
             <div className="bottom-section">
