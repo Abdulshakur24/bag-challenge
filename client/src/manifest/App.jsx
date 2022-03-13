@@ -12,7 +12,7 @@ function App() {
 
   // Redirect user to login page if not logged.
   useEffect(() => {
-    if (!user) return navigator("/registration", { replace: true });
+    if (!user) return navigator("/", { replace: true });
   }, [user, navigator]);
 
   return (
