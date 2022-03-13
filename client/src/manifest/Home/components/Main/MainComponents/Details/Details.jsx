@@ -109,7 +109,11 @@ const Details = () => {
         <div className="buttons">
           <button onClick={() => navigator(-1)}>Go Back</button>
           {!isObjectInList() ? (
-            <button onClick={saveToMyList} className="list-btn">
+            <button
+              disabled={list.status === "loading"}
+              onClick={saveToMyList}
+              className="list-btn"
+            >
               Add to the list
             </button>
           ) : null}
