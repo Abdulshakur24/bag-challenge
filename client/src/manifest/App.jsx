@@ -19,7 +19,7 @@ function App() {
     <AnimatePresence exitBeforeEnter>
       <Routes key={location.pathname} location={location}>
         <Route index path="/home/*" element={<Home />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path="/" element={<Registration />} />
         <Route path="*" element={<h1>Page not found.</h1>} />
       </Routes>
     </AnimatePresence>
