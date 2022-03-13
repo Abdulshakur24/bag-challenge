@@ -32,6 +32,10 @@ export const DetailsContainer = styled(motion.div)`
         max-width: 200px;
         margin-top: unset;
       }
+      &:disabled {
+        opacity: 0.2;
+        cursor: unset;
+      }
     }
   }
 `;
