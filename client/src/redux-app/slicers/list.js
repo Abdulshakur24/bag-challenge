@@ -70,11 +70,13 @@ export const listSlice = createSlice({
         state.status = 'loading'
       })
       .addCase(updateList.fulfilled, (state, { payload }) => {
-        state.data.forEach((object) => {
-          if (object._id === payload.id) {
-            object.visited = payload.visited
+        const array = state.data
+        for (let i = 0; i < array.length; i++) {
+          if (array[i]._id === payload.id) {
+            array[i].visited = payload.visited
+            break
           }
-        })
+        }
         state.status = 'idle'
       })
       .addCase(updateList.rejected, (state) => {
