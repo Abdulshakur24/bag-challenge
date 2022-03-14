@@ -55,8 +55,8 @@ function Registration() {
         toastInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
         setIsFetching(false);
-        dispatch(fetchAllVisits());
-        dispatch(fetchAllList());
+        dispatch(fetchAllVisits(data.token));
+        dispatch(fetchAllList(data.token));
         navigator("/home/to-visit", { replace: true });
       })
       .catch(function (error) {
@@ -74,8 +74,8 @@ function Registration() {
         toastInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
         setIsFetching(false);
-        dispatch(fetchAllVisits());
-        dispatch(fetchAllList());
+        dispatch(fetchAllVisits(data.token));
+        dispatch(fetchAllList(data.token));
         navigator("/home/to-visit", { replace: true });
       })
       .catch(function (error) {
@@ -84,7 +84,7 @@ function Registration() {
       });
   };
 
-  // Redirect user to 'to-visit' page if token exist in the localStorage.
+  // Redirect user to 'to-visit' page if token exists in the localStorage.
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -101,8 +101,8 @@ function Registration() {
             toastInfo(`Welcome back ${data.name}!`);
             dispatch(loadUser(data));
             setIsFetching(false);
-            dispatch(fetchAllVisits());
-            dispatch(fetchAllList());
+            dispatch(fetchAllVisits(data.token));
+            dispatch(fetchAllList(data.token));
             navigator("/home/to-visit", { replace: true });
           })
           .catch(function (error) {
