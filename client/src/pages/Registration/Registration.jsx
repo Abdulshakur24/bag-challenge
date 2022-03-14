@@ -9,7 +9,7 @@ import { Login, Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Button, Input } from "./RegistrationStyle";
 import { pageMotion } from "./motions";
-import { ReactComponent as BagLogo } from "../../asset/BAG-Logo.svg";
+import { ReactComponent as BagLogo } from "../../assets/BAG-Logo.svg";
 import { fetchAllVisits } from "../../redux-app/slicers/visited";
 import { fetchAllList } from "../../redux-app/slicers/list";
 

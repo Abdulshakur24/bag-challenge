@@ -12,8 +12,8 @@ import {
   Region,
   Capital,
 } from "./MyListStyle";
-import { ReactComponent as CheckIcon } from "../../asset/checkIcon.svg";
-import { ReactComponent as DeleteIcon } from "../../asset/deleteIcon.svg";
+import { ReactComponent as CheckIcon } from "../../assets/checkIcon.svg";
+import { ReactComponent as DeleteIcon } from "../../assets/deleteIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteList, updateList } from "../../redux-app/slicers/list";
 

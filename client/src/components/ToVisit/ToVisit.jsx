@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toastError } from "../../utils/helpers";
 import { Menu, MenuItem, Skeleton } from "@mui/material";
 import { fetchCountries } from "../../redux-app/slicers/toVisit";
-import { ReactComponent as SearchLogo } from "../../asset/SearchIcon.svg";
+import { ReactComponent as SearchLogo } from "../../assets/SearchIcon.svg";
 import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 
 const preloaders = [];
