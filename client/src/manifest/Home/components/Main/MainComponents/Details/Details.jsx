@@ -32,6 +32,7 @@ const Details = () => {
     languages: {},
   });
 
+  const user = useSelector((state) => state.user.data);
   const toVisit = useSelector((state) => state.toVisit);
   const visited = useSelector((state) => state.visited);
   const list = useSelector((state) => state.list);
@@ -89,7 +90,7 @@ const Details = () => {
   };
 
   const saveToMyList = () => {
-    dispatch(postList(details));
+    dispatch(postList({ object: details, token: user.token }));
   };
 
   const isObjectInList = () => {
