@@ -48,12 +48,7 @@ function Country(props) {
   };
 
   return (
-    <CountryWrapper
-      transition={{ duration: 0.25 }}
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
+    <CountryWrapper>
       <CountryContainer onClick={handleNavigator}>
         <Top>
           <Image src={props.flags.png} alt={props.name.common} />
