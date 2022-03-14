@@ -85,7 +85,6 @@ function ToVisit() {
     setIsNameSorted(!isNameSorted);
   };
 
-  const [test, setTest] = useState(false);
   return (
     <ToVisitWrapper>
       <ToVisitContents>
@@ -105,7 +104,6 @@ function ToVisit() {
             <ArrowUpward style={{ marginLeft: "0.5rem" }} />
           )}
         </button>
-        <button onClick={() => setTest(!test)}>Test</button>
         <button className="filter-button" onClick={handleClick}>
           Filter By Region
         </button>
@@ -128,7 +126,7 @@ function ToVisit() {
         </Menu>
       </ToVisitContents>
       <ToVisitContainer>
-        {toVisits.status === "loading" || test
+        {toVisits.status === "loading"
           ? preloaders.map((Preloader) => Preloader)
           : sortBy
               .filter((object) => {
