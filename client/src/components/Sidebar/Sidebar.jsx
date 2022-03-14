@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SidbarWrapper } from "./SidebarStyle";
-import { ReactComponent as BagLogo } from "../../../../asset/BAG-Logo.svg";
+import { ReactComponent as BagLogo } from "../../asset/BAG-Logo.svg";
 
 function Sidebar() {
   const { pathname } = useLocation();

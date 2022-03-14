@@ -7,7 +7,7 @@ import {
   DetailsContents,
   DetailsWrapper,
 } from "./DetailStyle";
-import { postList } from "../../../../../../redux-app/slicers/list";
+import { postList } from "../../redux-app/slicers/list";
 
 const Details = () => {
   const { name } = useParams();

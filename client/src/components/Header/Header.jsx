@@ -5,7 +5,7 @@ import { NightlightOutlined, LightMode } from "@mui/icons-material";
 import { AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signOut } from "../../../../redux-app/slicers/user";
+import { signOut } from "../../redux-app/slicers/user";
 
 function Header() {
   const [toggleTheme, setToggleTheme] = useState(localStorage.getItem("theme"));

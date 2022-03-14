@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postVisit } from "../../../../../../redux-app/slicers/visited";
+import { postVisit } from "../../redux-app/slicers/visited";
 import {
   CountryWrapper,
   CountryContainer,

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { HomeWrapper } from "./HomeScreenStyle";
 import { useLocation } from "react-router-dom";
 
-import { Sidebar, Main } from ".";
+import { Sidebar, Main } from "../../components";
 
 function Home() {
   const { pathname } = useLocation();
