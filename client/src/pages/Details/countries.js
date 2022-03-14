@@ -1246,5 +1246,9 @@ const countries = [
   },
 ]
 
-export const getFullNameByISO3 = (iso3Param) =>
-  countries.filter(({ iso3 }) => iso3 === iso3Param)[0]
+export const getFullNameByISO3 = (iso3) => {
+  for (let i = 0; i < countries.length; i++) {
+    if (countries[i].iso3 === iso3) return countries[i]
+  }
+  return null
+}
