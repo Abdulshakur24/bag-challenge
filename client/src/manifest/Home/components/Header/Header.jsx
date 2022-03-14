@@ -4,10 +4,15 @@ import { BackdropWrapper, HeaderWrapper, ModalWrapper } from "./HeaderStyle";
 import { NightlightOutlined, LightMode } from "@mui/icons-material";
 import { AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../../../redux-app/slicers/user";
 
 function Header() {
   const [toggleTheme, setToggleTheme] = useState(localStorage.getItem("theme"));
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [confirmLogout, setConfirmLogout] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document
@@ -97,6 +102,29 @@ function Header() {
                   {isDark(<LightMode />, <NightlightOutlined />)}
                   {isDark("Light Mode", "Dark Mode")}
                 </Button>
+                {confirmLogout ? (
+                  <div className="confirm-region">
+                    <p>Are you sure?</p>
+                    <Button
+                      onClick={() => {
+                        dispatch(signOut());
+                      }}
+                    >
+                      YES
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setConfirmLogout(false);
+                      }}
+                    >
+                      NO
+                    </Button>
+                  </div>
+                ) : (
+                  <Button onClick={() => setConfirmLogout(true)}>
+                    Logout.
+                  </Button>
+                )}
               </div>
             </div>
           </Modal>
