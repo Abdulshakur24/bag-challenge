@@ -106,6 +106,7 @@ export const listSlice = createSlice({
         if (index > -1) {
           state.data.splice(index, 1)
         }
+        state.status = 'idle'
       })
       .addCase(deleteList.rejected, (state) => {
         state.status = 'error'
