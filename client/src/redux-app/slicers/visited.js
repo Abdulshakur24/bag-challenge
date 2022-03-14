@@ -3,24 +3,29 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import Axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
-const token = localStorage.getItem('token')
 
 const axios = Axios.create({
   baseURL: isProduction
     ? 'https://bag-challenge-2022.herokuapp.com/api/visit'
     : 'http://localhost:5010/api/visit/',
-  headers: {
-    Authorization: `Bearer ${token}`,
+})
+
+export const postVisit = createAsyncThunk(
+  'visit/post',
+  async ({ object, token }) => {
+    const response = await axios.post('/post', object, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
   },
-})
+)
 
-export const postVisit = createAsyncThunk('visit/post', async (object) => {
-  const response = await axios.post('/post', object)
-  return response.data
-})
-
-export const fetchAllVisits = createAsyncThunk('visits', async () => {
-  const response = await axios.get('/all')
+export const fetchAllVisits = createAsyncThunk('visits', async (token) => {
+  const response = await axios.get('/all', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
   return response.data
 })
 
