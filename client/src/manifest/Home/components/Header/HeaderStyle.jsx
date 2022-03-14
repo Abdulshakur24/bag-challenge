@@ -83,8 +83,7 @@ export const BackdropWrapper = styled(motion.div)`
 
 export const ModalWrapper = styled(motion.div)`
   position: fixed;
-  width: 60%;
-  max-width: 600px;
+  width: clamp(0px, 100%, 400px);
   top: 0;
   right: 0;
   bottom: 0;
@@ -119,7 +118,7 @@ export const ModalWrapper = styled(motion.div)`
     .btn-layout {
       margin-top: 1.5rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       width: 100%;
 
@@ -131,6 +130,15 @@ export const ModalWrapper = styled(motion.div)`
           margin-right: 1rem;
         }
         /* display: none; */
+      }
+
+      .confirm-region {
+        position: relative;
+        p {
+          top: -20px;
+          right: 12px;
+          position: absolute;
+        }
       }
     }
   }
