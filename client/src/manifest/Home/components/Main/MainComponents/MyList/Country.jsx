@@ -14,7 +14,7 @@ import {
 } from "./MyListStyle";
 import { ReactComponent as CheckIcon } from "../../../../../../asset/checkIcon.svg";
 import { ReactComponent as DeleteIcon } from "../../../../../../asset/deleteIcon.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteList,
   updateList,
@@ -22,6 +22,7 @@ import {
 
 function Country(props) {
   const navigator = useNavigate();
+  const user = useSelector((state) => state.user.data);
 
   const handleNavigator = () => {
     navigator(props.name.official);
@@ -29,10 +30,17 @@ function Country(props) {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteList(props.id));
+    dispatch(deleteList({ id: props.id, token: user.token }));
   };
+
   const handleCheck = () => {
-    dispatch(updateList({ id: props.id, visited: props.info.visited }));
+    dispatch(
+      updateList({
+        id: props.id,
+        visited: props.info.visited,
+        token: user.token,
+      })
+    );
   };
 
   const handleCurrencies = (currencies) => {
