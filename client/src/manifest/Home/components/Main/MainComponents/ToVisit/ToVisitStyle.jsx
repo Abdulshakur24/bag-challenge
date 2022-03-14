@@ -18,9 +18,6 @@ export const ToVisitContainer = styled(motion.div)`
   justify-items: center;
   gap: 2.5rem;
 
-  .css-1dk1h2u-MuiSkeleton-root {
-    transform: scale(1);
-  }
   .MuiSkeleton-root {
     width: 100%;
     height: 450px;

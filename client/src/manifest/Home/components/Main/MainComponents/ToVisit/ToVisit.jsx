@@ -16,7 +16,9 @@ import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 const preloaders = [];
 
 for (let i = 1; i <= 15; i++) {
-  preloaders.push(<Skeleton key={i} animation="wave" />);
+  preloaders.push(
+    <Skeleton key={i} animation="wave" style={{ transform: "scale(1)" }} />
+  );
 }
 
 function ToVisit() {
