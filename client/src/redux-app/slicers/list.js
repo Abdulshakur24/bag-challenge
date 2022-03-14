@@ -1,41 +1,54 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
 import Axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
-const token = localStorage.getItem('token')
 
 const axios = Axios.create({
   baseURL: isProduction
     ? 'https://bag-challenge-2022.herokuapp.com/api/list'
     : 'http://localhost:5010/api/list/',
-  headers: {
-    Authorization: `Bearer ${token}`,
+})
+
+export const postList = createAsyncThunk(
+  'list/post',
+  async ({ object, token }) => {
+    const response = await axios.post('/post', object, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
   },
-})
+)
 
-export const postList = createAsyncThunk('list/post', async (object) => {
-  const response = await axios.post('/post', object)
-  return response.data
-})
-
-export const fetchAllList = createAsyncThunk('list', async () => {
-  const response = await axios.get('/all')
+export const fetchAllList = createAsyncThunk('list', async (token) => {
+  const response = await axios.get('/all', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
   return response.data
 })
 
 export const updateList = createAsyncThunk(
   'list/update',
-  async ({ id, visited }) => {
-    const response = await axios.patch(`update/${id}`, { visited: !visited })
+  async ({ id, visited, token }) => {
+    const response = await axios.patch(
+      `update/${id}`,
+      { visited: !visited },
+      { headers: { Authorization: `Bearer ${token}` } },
+    )
     return response.data
   },
 )
 
-export const deleteList = createAsyncThunk('list/delete', async (id) => {
-  const response = await axios.delete(`delete/${id}`)
-  return response.data
-})
+export const deleteList = createAsyncThunk(
+  'list/delete',
+  async ({ id, token }) => {
+    const response = await axios.delete(`delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    return response.data
+  },
+)
 
 export const listSlice = createSlice({
   name: 'list',
