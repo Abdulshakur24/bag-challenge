@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postVisit } from "../../../../../../redux-app/slicers/visited";
 import {
@@ -18,9 +18,11 @@ function Country(props) {
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user.data);
+
   const handleNavigator = () => {
     navigator(props.name.official);
-    dispatch(postVisit(props.info));
+    dispatch(postVisit({ object: props.info, token: user.token }));
   };
 
   return (
