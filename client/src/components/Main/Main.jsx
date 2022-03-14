@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Header, MyList, ToVisit, Visited, Details } from "../../components";
+import { Header, MyList, ToVisit, Visited, Details } from "..";
 import { MainWrapper } from "./MainStyle";
 
 function Main() {
