@@ -16,7 +16,7 @@ import { ArrowUpward, ArrowDownward } from "@mui/icons-material";
 const preloaders = [];
 
 for (let i = 1; i <= 15; i++) {
-  preloaders.push(<Skeleton key={i} animation="wave" height={400} />);
+  preloaders.push(<Skeleton key={i} animation="wave" />);
 }
 
 function ToVisit() {
@@ -83,6 +83,7 @@ function ToVisit() {
     setIsNameSorted(!isNameSorted);
   };
 
+  const [test, setTest] = useState(false);
   return (
     <ToVisitWrapper>
       <ToVisitContents>
@@ -102,7 +103,7 @@ function ToVisit() {
             <ArrowUpward style={{ marginLeft: "0.5rem" }} />
           )}
         </button>
-
+        <button onClick={() => setTest(!test)}>Test</button>
         <button className="filter-button" onClick={handleClick}>
           Filter By Region
         </button>
@@ -125,7 +126,7 @@ function ToVisit() {
         </Menu>
       </ToVisitContents>
       <ToVisitContainer>
-        {toVisits.status === "loading"
+        {toVisits.status === "loading" || test
           ? preloaders.map((Preloader) => Preloader)
           : sortBy
               .filter((object) => {
