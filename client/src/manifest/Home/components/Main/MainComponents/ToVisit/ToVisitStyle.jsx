@@ -21,6 +21,7 @@ export const ToVisitContainer = styled(motion.div)`
   .MuiSkeleton-root {
     width: 100%;
     height: 450px;
+    max-width: 328px;
   }
 `;
 
