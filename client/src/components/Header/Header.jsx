@@ -115,7 +115,7 @@ function Header() {
                   }}
                   sx={{ width: 56, height: 56 }}
                 />
-                <h4>Hey, {user.name}</h4>
+                <h4>Hey, {user?.name}</h4>
               </div>
 
               <div className="modal-content">
