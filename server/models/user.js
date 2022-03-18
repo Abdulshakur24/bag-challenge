@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
       required: [true, 'Email required!'],
       unique: true,
     },
-    profileUrl: String,
+    profileUrl: { type: String, trim: true },
     hashed_password: {
       type: String,
       required: [true, 'Password required!'],
