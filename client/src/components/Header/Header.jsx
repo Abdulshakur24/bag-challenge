@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { BackdropWrapper, HeaderWrapper, ModalWrapper } from "./HeaderStyle";
 import { NightlightOutlined, LightMode } from "@mui/icons-material";
 import { AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux-app/slicers/user";
 
 function Header() {
-  const [toggleTheme, setToggleTheme] = useState(localStorage.getItem("theme"));
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggle, setToggle] = useState({
+    theme: localStorage.getItem("theme"),
+    menuMobile: false,
+    menuDesktop: false,
+  });
   const [confirmLogout, setConfirmLogout] = useState(false);
+  const user = useSelector((state) => state.user.data);
 
   const dispatch = useDispatch();
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     document
       .getElementsByTagName("html")[0]
-      .setAttribute("data-theme", toggleTheme);
-  }, [toggleTheme]);
+      .setAttribute("data-theme", toggle.theme);
+  }, [toggle.theme]);
 
   useEffect(() => {
     if (!localStorage.getItem("theme")) {
@@ -27,12 +33,18 @@ function Header() {
   }, []);
 
   const isDark = (elementOne, elementTwo) =>
-    toggleTheme === "dark" ? elementOne : elementTwo;
-
-  const { pathname } = useLocation();
+    toggle.theme === "dark" ? elementOne : elementTwo;
 
   const handleToggleMenu = () => {
-    setToggleMenu(false);
+    setToggle({ ...toggle, menuMobile: false });
+  };
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(event);
   };
 
   return (
@@ -40,19 +52,41 @@ function Header() {
       <div className="container">
         <div className="contents">
           <h3>Where in the world?</h3>
-          <Button
-            onClick={() => {
-              const updated = toggleTheme === "light" ? "dark" : "light";
-              setToggleTheme(updated);
-              localStorage.setItem("theme", updated);
-            }}
-          >
-            {isDark(<LightMode />, <NightlightOutlined />)}
-            {isDark("Light Mode", "Dark Mode")}
-          </Button>
+          <div className="right-section">
+            <Button
+              onClick={() => {
+                const updated = toggle.theme === "light" ? "dark" : "light";
+                setToggle({ ...toggle, theme: updated });
+                localStorage.setItem("theme", updated);
+              }}
+            >
+              {isDark(<LightMode />, <NightlightOutlined />)}
+              {isDark("Light Mode", "Dark Mode")}
+            </Button>
+            <Avatar
+              src={user.profileUrl}
+              alt={user.name}
+              style={{
+                border: "2px solid #212121",
+                cursor: "pointer",
+              }}
+              sx={{ width: 56, height: 56 }}
+              onClick={handleClick}
+            />
+            <Menu
+              anchorEl={anchorEl}
+              open={open}
+              onClose={() => setAnchorEl(null)}
+            >
+              <MenuItem>Logout.</MenuItem>
+            </Menu>
+            <h4>Hey, {user.name}</h4>
+          </div>
           <ul
-            className={toggleMenu ? "opened" : "closed"}
-            onClick={() => setToggleMenu(!toggleMenu)}
+            className={toggle.menuMobile ? "opened" : "closed"}
+            onClick={() =>
+              setToggle({ ...toggle, menuMobile: !toggle.menuMobile })
+            }
           >
             <li></li>
             <li></li>
@@ -65,9 +99,25 @@ function Header() {
         exitBeforeEnter={true}
         onExitComplete={() => null}
       >
-        {toggleMenu && (
-          <Modal handleClose={() => setToggleMenu(!toggleMenu)}>
+        {toggle.menuMobile && (
+          <Modal
+            handleClose={() =>
+              setToggle({ ...toggle, menuMobile: !toggle.menuMobile })
+            }
+          >
             <div className="modal-container">
+              <div className="modal-header">
+                <Avatar
+                  src={user.profileUrl}
+                  alt={user.name}
+                  style={{
+                    border: "2px solid #212121",
+                  }}
+                  sx={{ width: 56, height: 56 }}
+                />
+                <h4>Hey, {user.name}</h4>
+              </div>
+
               <div className="modal-content">
                 <Link
                   className={`${pathname === "/home/my-list" && "selected"}`}
@@ -94,8 +144,8 @@ function Header() {
               <div className="btn-layout">
                 <Button
                   onClick={() => {
-                    const updated = toggleTheme === "light" ? "dark" : "light";
-                    setToggleTheme(updated);
+                    const updated = toggle.theme === "light" ? "dark" : "light";
+                    setToggle({ ...toggle, theme: updated });
                     localStorage.setItem("theme", updated);
                   }}
                 >

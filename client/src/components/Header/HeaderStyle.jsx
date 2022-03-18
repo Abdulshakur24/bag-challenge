@@ -20,18 +20,31 @@ export const HeaderWrapper = styled(motion.div)`
       align-items: center;
       color: var(--black);
 
-      button {
-        color: var(--black);
-
-        .MuiSvgIcon-root {
-          transform: rotate(-45deg);
-          margin-right: 1rem;
-        }
+      .right-section {
         display: none;
         @media ${(props) => props.theme.breakpoints.lg} {
           display: flex;
+          align-items: center;
+          justify-content: center;
+
+          h4 {
+            margin-left: 0.5rem;
+          }
+          button {
+            color: var(--black);
+
+            .MuiSvgIcon-root {
+              transform: rotate(-45deg);
+              margin-right: 1rem;
+            }
+            display: none;
+            @media ${(props) => props.theme.breakpoints.lg} {
+              display: flex;
+            }
+          }
         }
       }
+
       ul {
         z-index: 10;
         cursor: pointer;
@@ -91,6 +104,20 @@ export const ModalWrapper = styled(motion.div)`
   transition: all 250ms ease-in-out;
 
   .modal-container {
+    .modal-header {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h4 {
+        margin-left: 1.25rem;
+        color: var(--black);
+        transition: all 250ms ease-in-out;
+      }
+    }
+
     .modal-content {
       margin-top: 5.5rem;
       display: flex;
