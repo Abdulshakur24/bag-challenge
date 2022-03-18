@@ -5,7 +5,7 @@ const isAuthenticated = require('../controllers/auth')
 const { signUp, getUserByEmail, signIn, token } = require('../controllers/user')
 
 router.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password, profileUrl } = req.body
 
   const checkValidation = Joi.object({
     name: Joi.string().alphanum().min(3).max(30).required(),
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
   if (await getUserByEmail(email)) {
     return res.status(403).send('Email already taken!')
   }
-  await signUp(value, res)
+  await signUp({ ...value, profileUrl }, res)
 })
 
 router.post('/signin', async (req, res) => {
