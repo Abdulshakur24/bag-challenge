@@ -54,7 +54,6 @@ function Registration() {
       .post("/user/signin", signInForm)
       .then(({ data }) => {
         toastInfo(`Welcome ${data.name}!`);
-        console.log(data);
         dispatch(loadUser(data));
         setIsFetching(false);
         dispatch(fetchAllVisits(data.token));
@@ -139,8 +138,6 @@ function Registration() {
         });
     }
   };
-
-  console.log(signUpForm);
 
   return (
     <RegistrationWrapper
