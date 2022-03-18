@@ -80,7 +80,7 @@ function Header() {
             >
               <MenuItem>Logout.</MenuItem>
             </Menu>
-            <h4>Hey, {user.name}</h4>
+            <h4>Hey, {user?.name}</h4>
           </div>
           <ul
             className={toggle.menuMobile ? "opened" : "closed"}
