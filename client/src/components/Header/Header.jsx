@@ -44,7 +44,6 @@ function Header() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event);
   };
 
   return (
@@ -77,6 +76,7 @@ function Header() {
               anchorEl={anchorEl}
               open={open}
               onClose={() => setAnchorEl(null)}
+              onClick={() => dispatch(signOut())}
             >
               <MenuItem>Logout.</MenuItem>
             </Menu>
