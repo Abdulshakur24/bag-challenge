@@ -10,7 +10,7 @@ const getUserByEmail = async (email) => {
   return await User.findOne({ email }).lean()
 }
 
-const signUp = async ({ name, email, password }, res) => {
+const signUp = async ({ name, email, password, profileUrl }, res) => {
   const salts = process.env.SALT
   const salt = await bcrypt.genSalt(Number(salts))
 
@@ -18,6 +18,7 @@ const signUp = async ({ name, email, password }, res) => {
   const user = await User.create({
     name,
     email,
+    profileUrl,
     hashed_password,
   })
 
@@ -29,6 +30,7 @@ const signUp = async ({ name, email, password }, res) => {
     id: user._id,
     name: user.name,
     email: user.email,
+    profileUrl: user.profileUrl,
     myList: user.myList,
     visited: user.visited,
     token,
@@ -52,11 +54,11 @@ const signIn = async (email, password, res) => {
   })
 
   if (await confirmPassword(password, user.hashed_password)) {
-    console.log(user)
     const result = {
       id: user._id,
       name: user.name,
       email: user.email,
+      profileUrl: user.profileUrl,
       myList: user.myList,
       visited: user.visited,
       token,
