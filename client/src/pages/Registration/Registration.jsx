@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadUser } from "../../redux-app/slicers/user";
@@ -30,7 +30,8 @@ function Registration() {
     name: "",
     email: "",
     password: "",
-    profileUrl: null,
+    profileUrl:
+      "https://media.istockphoto.com/photos/male-silhouette-as-avatar-profile-picture-picture-id519078727?k=20&m=519078727&s=612x612&w=0&h=Ae28HYlW4GraCwpJuOrxzjzdQNg6omTdcAA2PPpx2qg=",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,6 +54,7 @@ function Registration() {
       .post("/user/signin", signInForm)
       .then(({ data }) => {
         toastInfo(`Welcome ${data.name}!`);
+        console.log(data);
         dispatch(loadUser(data));
         setIsFetching(false);
         dispatch(fetchAllVisits(data.token));
@@ -114,6 +116,31 @@ function Registration() {
     }
     return () => controller.abort();
   }, [dispatch, navigator]);
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+    });
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file?.name) {
+      getBase64(file)
+        .then((result) => {
+          setSignUpForm({ ...signUpForm, profileUrl: result });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  console.log(signUpForm);
 
   return (
     <RegistrationWrapper
@@ -190,6 +217,31 @@ function Registration() {
               </div>
               <div className={`flip-card-back ${!flipCard ? "hide" : ""}`}>
                 <form onSubmit={signUpHandleSubmitForm}>
+                  <div className="personal-image">
+                    <label className="label">
+                      <input
+                        onChange={handleImageUpload}
+                        type="file"
+                        accept="image/*"
+                      />
+                      <figure className="personal-figure">
+                        <img
+                          src={signUpForm.profileUrl}
+                          className="personal-avatar"
+                          alt="avatar"
+                        />
+                        <figcaption className="personal-figcaption">
+                          <img
+                            src={
+                              "https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png"
+                            }
+                            alt="profile"
+                          />
+                        </figcaption>
+                      </figure>
+                    </label>
+                  </div>
+
                   <Input
                     type="text"
                     placeholder="Name"
@@ -287,4 +339,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default memo(Registration);

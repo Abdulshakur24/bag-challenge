@@ -53,6 +53,7 @@ export const RegistrationWrapper = styled(motion.div)`
         &.hide {
           display: none;
         }
+
         position: absolute;
         padding: 1rem;
         top: 0;
@@ -92,8 +93,53 @@ export const RegistrationWrapper = styled(motion.div)`
       }
 
       .flip-card-back {
-        /* background-color: var(--whiteSmoke); */
         transform: rotateY(180deg);
+        .personal-image {
+          position: absolute;
+          top: 0.5rem;
+          right: 1rem;
+        }
+        .personal-image input[type="file"] {
+          display: none;
+        }
+        .personal-figure {
+          position: relative;
+          width: 60px;
+          height: 60px;
+        }
+        .personal-avatar {
+          cursor: pointer;
+          width: 60px;
+          height: 60px;
+          box-sizing: border-box;
+          border-radius: 100%;
+          border: 2px solid #212121;
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+          transition: all ease-in-out 0.3s;
+        }
+        .personal-avatar:hover {
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+        }
+        .personal-figcaption {
+          cursor: pointer;
+          position: absolute;
+          top: 0px;
+          width: inherit;
+          height: inherit;
+          border-radius: 100%;
+          opacity: 0;
+          background-color: rgba(0, 0, 0, 0);
+          transition: all ease-in-out 0.3s;
+        }
+        .personal-figcaption:hover {
+          opacity: 1;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+        .personal-figcaption > img {
+          margin: 16.25px;
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }
