@@ -63,8 +63,8 @@ function Header() {
               {isDark("Light Mode", "Dark Mode")}
             </Button>
             <Avatar
-              src={user.profileUrl}
-              alt={user.name}
+              src={user?.profileUrl}
+              alt={user?.name}
               style={{
                 border: "2px solid #212121",
                 cursor: "pointer",
@@ -108,8 +108,8 @@ function Header() {
             <div className="modal-container">
               <div className="modal-header">
                 <Avatar
-                  src={user.profileUrl}
-                  alt={user.name}
+                  src={user?.profileUrl}
+                  alt={user?.name}
                   style={{
                     border: "2px solid #212121",
                   }}
