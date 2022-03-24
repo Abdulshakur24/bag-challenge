@@ -76,9 +76,8 @@ function Header() {
               anchorEl={anchorEl}
               open={open}
               onClose={() => setAnchorEl(null)}
-              onClick={() => dispatch(signOut())}
             >
-              <MenuItem>Logout.</MenuItem>
+              <MenuItem onClick={() => dispatch(signOut())}>Logout.</MenuItem>
             </Menu>
             <h4>Hey, {user?.name}</h4>
           </div>
