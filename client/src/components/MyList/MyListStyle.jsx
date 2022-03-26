@@ -30,6 +30,36 @@ export const MyListContainer = styled(motion.div)`
   }
 `;
 
+export const EmptyListWrapper = styled(motion.div)``;
+
+export const EmptyListContainer = styled(motion.div)`
+  width: clamp(0px, 100%, 400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    width: 100%;
+    height: 3.125rem;
+    max-width: 246px;
+    color: var(--black);
+    background-color: var(--white);
+    box-shadow: 6px 6px 10px 0px rgb(0 0 0 / 20%);
+    &:active {
+      opacity: 0.8;
+    }
+  }
+`;
+
 export const CountryWrapper = styled(motion.div)`
   width: 100%;
   box-shadow: 6px 6px 10px 0px rgba(0 0 0 / 0.2);
