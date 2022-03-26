@@ -12,3 +12,32 @@ export const VisitedWrapper = styled(motion.div)`
     margin: 1rem 3.375rem;
   }
 `;
+
+export const EmptyVisitedWrapper = styled(motion.div)``;
+export const EmptyVisitedContainer = styled(motion.div)`
+  width: clamp(0px, 100%, 400px);
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    width: 100%;
+    height: 3.125rem;
+    max-width: 246px;
+    color: var(--black);
+    background-color: var(--white);
+    box-shadow: 6px 6px 10px 0px rgb(0 0 0 / 20%);
+    &:active {
+      opacity: 0.8;
+    }
+  }
+`;
