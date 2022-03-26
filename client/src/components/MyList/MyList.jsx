@@ -1,10 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Country from "./Country";
-import { MyListContainer, MyListWrapper } from "./MyListStyle";
+import {
+  MyListContainer,
+  MyListWrapper,
+  EmptyListWrapper,
+  EmptyListContainer,
+} from "./MyListStyle";
 
 function MyList() {
-  const myList = useSelector((state) => state.list.data);
+  const { data: myList, status } = useSelector((state) => state.list);
+
+  if (!myList.length && status !== "loading") return <EmptyList />;
 
   return (
     <MyListWrapper>
@@ -26,4 +34,16 @@ function MyList() {
   );
 }
 
+const EmptyList = () => {
+  const navigator = useNavigate();
+  return (
+    <EmptyListWrapper>
+      <EmptyListContainer>
+        <h1>You haven't added any country to the list.</h1>
+        <p>Click here to explore countries!</p>
+        <button onClick={() => navigator("/home/to-visit")}>Explore!</button>
+      </EmptyListContainer>
+    </EmptyListWrapper>
+  );
+};
 export default MyList;
