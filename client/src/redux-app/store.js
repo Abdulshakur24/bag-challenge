@@ -25,15 +25,14 @@ const rootReducer = combineReducers({
   list: listReducer,
 });
 
-const persistedReducer = persistReducer(
-  {
-    key: "root",
-    storage,
-    version: "1.0.1",
-    whitelist: ["toVisit"],
-  },
-  rootReducer
-);
+const persistConfig = {
+  key: "root",
+  storage,
+  version: "1.0.1",
+  whitelist: ["toVisit"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default configureStore({
   reducer: persistedReducer,
