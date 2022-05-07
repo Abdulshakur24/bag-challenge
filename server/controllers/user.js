@@ -35,7 +35,7 @@ const signUp = async ({ name, email, password, profileUrl }, res) => {
     id: user._id,
     name: user.name,
     email: user.email,
-    profileUrl: profileImages._id,
+    profileUrl: profileImages.profileUrl,
     myList: user.myList,
     visited: user.visited,
     token,
