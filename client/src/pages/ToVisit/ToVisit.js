@@ -161,7 +161,7 @@ function ToVisit() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className={classes.scrollToTop}
           >
-            <AiOutlineArrowUp size={"100%"} />
+            <AiOutlineArrowUp className={classes.icon} size={"100%"} />
           </Box>
         )) ||
           null}

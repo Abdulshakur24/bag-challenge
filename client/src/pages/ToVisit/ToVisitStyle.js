@@ -65,5 +65,8 @@ export const useStyles = createStyles((theme) => {
       cursor: "pointer",
       padding: "0.25rem",
     },
+    icon: {
+      color: "white",
+    },
   };
 });
