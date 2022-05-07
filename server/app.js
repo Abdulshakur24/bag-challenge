@@ -7,8 +7,10 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { body } = require("express-validator");
-const app = express();
 const path = require("path");
+
+const app = express();
+
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.urlencoded({ extended: false }));
