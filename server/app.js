@@ -34,10 +34,6 @@ if (isProduction) {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
   });
-} else {
-  app.get("/", (req, res) =>
-    res.send(`Please set your environment to 'production'.`)
-  );
 }
 
 app.use((req, res, next) => {
