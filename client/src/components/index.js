@@ -1,7 +1,5 @@
-export { default as Header } from './Header/Header'
-export { default as Main } from './Main/Main'
-export { default as Sidebar } from './Sidebar/Sidebar'
-export { default as MyList } from './MyList/MyList'
-export { default as ToVisit } from './ToVisit/ToVisit'
-export { default as Visited } from './Visited/Visited'
-export { default as Details } from './Details/Details'
+export { default as Login } from "./Login/Login";
+export { default as Register } from "./Register/Register";
+export { default as Preferences } from "./Preferences/Preferences";
+export { default as Settings } from "./Settings/Settings";
+export { default as Country } from "./Country/Country";
