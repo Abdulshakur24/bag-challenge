@@ -53,6 +53,7 @@ function Register() {
   const [isProcessing, setIsProcessing] = useState(false);
   const navigator = useNavigate();
   const handleRegister = (forms) => {
+    setIsProcessing(true);
     axios
       .post("/user/signup", { ...forms, profileUrl })
       .then(({ data }) => {

@@ -121,11 +121,13 @@ function Login() {
         <form onSubmit={form.onSubmit(handleSignIn)}>
           <TextInput
             required
+            type="email"
             label="Email"
             placeholder="Email"
             {...form.getInputProps("email")}
           />
           <PasswordInput
+            type="password"
             required
             label="Password"
             placeholder="Password"
