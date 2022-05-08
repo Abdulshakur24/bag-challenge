@@ -8,7 +8,7 @@ import {
   Text,
 } from "@mantine/core";
 import React, { createContext, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/BAG-Logo.svg";
 import Preferences from "../../components/Preferences/Preferences";
 import { useStyles } from "./LayoutStyle";
@@ -43,13 +43,19 @@ function Layout() {
   const currentPrimaryColor = theme.colors[theme.primaryColor][5];
 
   const [opened, setOpened] = useState(false);
+  const navigator = useNavigate();
+
   return (
     <Container className={classes.container}>
       <ToggleContext.Provider
         value={{ toggle, setToggle, pathName, setPathName }}
       >
         <Box className={`${navClassList.join(" ")} ${classes.box}`}>
-          <Logo fill={currentPrimaryColor} />
+          <Logo
+            onClick={() => navigator("/home")}
+            fill={currentPrimaryColor}
+            style={{ cursor: "pointer" }}
+          />
           <Burger
             onClick={() => setToggle({ ...toggle, burger: !toggle.burger })}
             size={"md"}
