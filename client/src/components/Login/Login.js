@@ -115,6 +115,42 @@ function Login() {
     return () => controller.abort();
   }, [dispatch, navigator]);
 
+  // if user finds so lazy to sign in or register.
+
+  const signInAsAGuest = () => {
+    setIsProcessing(true);
+    axios
+      .post(
+        "/user/signin",
+        {
+          email: "guest@gmail.com",
+          password: "guest2580",
+        },
+        {
+          signal: controller.signal,
+        }
+      )
+      .then(({ data }) => {
+        showNotification({ message: `Welcome ${data.name}!` });
+        dispatch(loadUser(data));
+        setIsProcessing(false);
+        dispatch(fetchCountries("africa"));
+        dispatch(fetchAllVisits(data.token));
+        dispatch(fetchAllList(data.token));
+        navigator("/home", { replace: true });
+      })
+      .catch(function (error) {
+        setIsProcessing(false);
+        if (error.response) {
+          showNotification({
+            color: "red",
+            message: error.response?.data,
+            autoClose: 3000,
+          });
+        }
+      });
+  };
+
   return (
     <Box className={classes.box}>
       <Box className={classes.formWrapper} m="auto">
@@ -122,7 +158,6 @@ function Login() {
         <form onSubmit={form.onSubmit(handleSignIn)}>
           <TextInput
             required
-            type="email"
             label="Email"
             placeholder="Email"
             {...form.getInputProps("email")}
@@ -143,19 +178,25 @@ function Login() {
             >
               Submit
             </Button>
+            Or
+            <Button
+              disabled={form.values.email}
+              loading={isProcessing}
+              onClick={signInAsAGuest}
+            >
+              Sign In As Guest
+            </Button>
           </Group>
         </form>
         <Box
           sx={() => ({
             display: "flex",
+            gap: "0.75rem",
+            alignItems: "center",
           })}
         >
           Don't have an account?
-          <Anchor
-            sx={{ marginLeft: "0.25rem" }}
-            component={Link}
-            to="/register"
-          >
+          <Anchor component={Link} to="/register">
             Register here
           </Anchor>
         </Box>
