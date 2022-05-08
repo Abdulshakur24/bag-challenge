@@ -1,10 +1,11 @@
-import { Box, Skeleton } from "@mantine/core";
+import { Anchor, Box, Skeleton, Text } from "@mantine/core";
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Country } from "../../components";
 import { ToggleContext } from "../Layout/Layout";
 import { useStyles } from "./VisitedStyle";
 import handleViewport from "react-in-viewport";
+import { Link } from "react-router-dom";
 
 const ViewportCountry = handleViewport(Country, { threshold: 0 });
 function Visited() {
@@ -17,7 +18,7 @@ function Visited() {
 
   const { classes } = useStyles();
 
-  return (
+  return visited.length ? (
     <Box className={classes.body}>
       {visited.map((props) => (
         <Skeleton key={props.area} visible={status === "loading"}>
@@ -33,6 +34,25 @@ function Visited() {
           />
         </Skeleton>
       ))}
+    </Box>
+  ) : (
+    <VisitedNotFound />
+  );
+}
+
+function VisitedNotFound() {
+  const { classes } = useStyles();
+
+  return (
+    <Box className={classes.notFoundWrapper}>
+      <Box className={classes.content}>
+        <Text mb={20} className={classes.text}>
+          You haven't visited any country.
+        </Text>
+        <Anchor component={Link} to="/home">
+          Start visiting!
+        </Anchor>
+      </Box>
     </Box>
   );
 }
