@@ -27,7 +27,7 @@ export const useStyles = createStyles((theme) => {
       fontWeight: "bold",
       textAlign: "center",
       marginBottom: "10px",
-      color: primaryColor[1],
+      color: primaryColor[9],
     },
   };
 });
