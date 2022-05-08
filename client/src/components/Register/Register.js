@@ -158,24 +158,28 @@ function Register() {
         </Box>
         <form onSubmit={form.onSubmit(handleRegister)}>
           <TextInput
+            type="text"
             required
             className={classes.input}
             placeholder="Name"
             {...form.getInputProps("name")}
           />
           <TextInput
+            type="email"
             required
             className={classes.input}
             placeholder="Email"
             {...form.getInputProps("email")}
           />
           <PasswordInput
+            type="password"
             required
             className={classes.input}
             placeholder="Password"
             {...form.getInputProps("password")}
           />
           <PasswordInput
+            type="password"
             required
             className={classes.input}
             placeholder="Re-Password"
