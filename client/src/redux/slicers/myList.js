@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const axios = Axios.create({
   baseURL: isProduction
-    ? "https://bag-challenge-2022.herokuapp.com/api/list"
+    ? "https://bag-2022.herokuapp.com/api/list"
     : "http://localhost:5010/api/list/",
 });
 

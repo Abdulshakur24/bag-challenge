@@ -183,6 +183,7 @@ function Login() {
               disabled={form.values.email}
               loading={isProcessing}
               onClick={signInAsAGuest}
+              type="button"
             >
               Sign In As Guest
             </Button>
