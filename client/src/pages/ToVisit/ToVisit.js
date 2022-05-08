@@ -1,5 +1,5 @@
 import { Box, Button, Input, Menu, Skeleton, Text } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Country } from "../../components";
@@ -83,9 +83,11 @@ function ToVisit() {
     });
   };
 
+  const { scrollIntoView, targetRef } = useScrollIntoView({ offset: 0 });
+
   return (
     <>
-      <Box className={classes.header}>
+      <Box className={classes.header} ref={targetRef}>
         <Input
           onChange={(e) => setQuery(e.target.value)}
           className={classes.input}
@@ -158,7 +160,7 @@ function ToVisit() {
         )}
         {(window.scrollY > 1200 && (
           <Box
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => scrollIntoView({ alignment: "start" })}
             className={classes.scrollToTop}
           >
             <AiOutlineArrowUp className={classes.icon} size={"100%"} />
