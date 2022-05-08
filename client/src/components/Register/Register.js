@@ -172,14 +172,12 @@ function Register() {
             {...form.getInputProps("email")}
           />
           <PasswordInput
-            type="password"
             required
             className={classes.input}
             placeholder="Password"
             {...form.getInputProps("password")}
           />
           <PasswordInput
-            type="password"
             required
             className={classes.input}
             placeholder="Re-Password"

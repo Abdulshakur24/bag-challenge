@@ -128,7 +128,6 @@ function Login() {
             {...form.getInputProps("email")}
           />
           <PasswordInput
-            type="password"
             required
             label="Password"
             placeholder="Password"
