@@ -110,7 +110,7 @@ function ToVisit() {
         </Button>
         <Menu
           className={classes.menu}
-          control={<Button fullWidth>Filter</Button>}
+          control={<Button fullWidth>By {region}</Button>}
           opened={opened}
           onOpen={handlers.open}
           onClose={handlers.close}
