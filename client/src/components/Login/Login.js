@@ -50,6 +50,7 @@ function Login() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleSignIn = (forms) => {
+    setIsProcessing(true);
     axios
       .post("/user/signin", forms)
       .then(({ data }) => {
