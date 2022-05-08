@@ -1,15 +1,14 @@
-import { Box, Skeleton } from "@mantine/core";
+import { Anchor, Box, Skeleton, Text } from "@mantine/core";
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Country } from "../../components";
 import { ToggleContext } from "../Layout/Layout";
 import { useStyles } from "./MyListStyle";
 import handleViewport from "react-in-viewport";
+import { Link } from "react-router-dom";
 
-const ViewportCountry = handleViewport(
-  Country,
-  { threshold: 0 } /** options: {}, config: {} **/
-);
+const ViewportCountry = handleViewport(Country, { threshold: 0 });
+
 function MyList() {
   const { setPathName } = useContext(ToggleContext);
 
@@ -21,7 +20,7 @@ function MyList() {
 
   const { classes } = useStyles();
 
-  return (
+  return myList.length ? (
     <Box className={classes.body}>
       {myList.map((props) => (
         <Skeleton key={props.area} visible={status === "loading"}>
@@ -37,6 +36,25 @@ function MyList() {
           />
         </Skeleton>
       ))}
+    </Box>
+  ) : (
+    <MyListNotFound />
+  );
+}
+
+function MyListNotFound() {
+  const { classes } = useStyles();
+
+  return (
+    <Box className={classes.notFoundWrapper}>
+      <Box className={classes.content}>
+        <Text mb={20} className={classes.text}>
+          You haven't added any country to your list.
+        </Text>
+        <Anchor component={Link} to="/home">
+          Start visiting!
+        </Anchor>
+      </Box>
     </Box>
   );
 }
