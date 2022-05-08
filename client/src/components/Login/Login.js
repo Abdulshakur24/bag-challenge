@@ -116,7 +116,6 @@ function Login() {
   }, [dispatch, navigator]);
 
   // if user finds so lazy to sign in or register.
-
   const signInAsAGuest = () => {
     setIsProcessing(true);
     axios

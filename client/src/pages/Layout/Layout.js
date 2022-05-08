@@ -52,9 +52,9 @@ function Layout() {
       >
         <Box className={`${navClassList.join(" ")} ${classes.box}`}>
           <Logo
-            onClick={() => navigator("/home")}
+            onClick={user ? () => navigator("/home") : () => {}}
             fill={currentPrimaryColor}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: user ? "pointer" : "unset" }}
           />
           <Burger
             onClick={() => setToggle({ ...toggle, burger: !toggle.burger })}
