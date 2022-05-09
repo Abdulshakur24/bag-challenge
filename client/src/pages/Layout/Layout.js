@@ -34,11 +34,11 @@ function Layout() {
 
   useEffect(() => {
     const _classList = [];
-    if (scroll.y > 0 && scroll.y - scroll.lastY > 0) {
+    if (scroll.currentY > 0 && scroll.currentY - scroll.lastY > 0) {
       _classList.push("hidden");
     }
     setNavClassList(_classList);
-  }, [scroll.y, scroll.lastY]);
+  }, [scroll.currentY, scroll.lastY]);
 
   const currentPrimaryColor = theme.colors[theme.primaryColor][5];
 

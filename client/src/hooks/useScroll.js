@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useScroll = () => {
   const [data, setData] = useState({
-    y: 0,
+    currentY: 0,
     lastY: 0,
   });
 
@@ -10,13 +10,12 @@ const useScroll = () => {
     const handleScroll = () => {
       setData((last) => {
         return {
-          y: window.scrollY,
-          lastY: last.y,
+          currentY: window.scrollY,
+          lastY: last.currentY,
         };
       });
     };
 
-    handleScroll();
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
