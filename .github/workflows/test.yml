@@ -1,6 +1,6 @@
 name: Deploy
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,3 +13,7 @@ jobs:
           heroku_email: "ashakur24@hotmail.com"
           appdir: "server" # <- This will point to the api folder in your project
           procfile: "web:node server/app.js"
+  test:
+    run: yarn test
+  deploy:
+    run: git push heroku master
