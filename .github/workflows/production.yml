@@ -1,0 +1,22 @@
+name: Deploy
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: npm install
+        run: pub get
+        working-directory: client
+      - name: Run tests
+        run: yarn run test
+        working-directory: client
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bag-2022" # Must be unique in Heroku
+          heroku_email: "ashakur24@hotmail.com"
+          appdir: "client" # <- This will point to the api folder in your project
+          procfile: "web:node client/server.js"
