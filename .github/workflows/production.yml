@@ -9,10 +9,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
       - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          **/node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         run: npm install
