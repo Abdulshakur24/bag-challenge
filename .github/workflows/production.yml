@@ -16,7 +16,6 @@ jobs:
       - name: Run Build
         run: npm run build
         working-directory: client
-
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -41,5 +40,3 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "bag-2022" # Must be unique in Heroku
           heroku_email: "ashakur24@hotmail.com"
-          appdir: "server" # <- This will point to the api folder in your project
-          procfile: "web:node app.js"
