@@ -16,12 +16,24 @@ const useScroll = () => {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const throttleHandleScroll = throttle(handleScroll, 100);
+    window.addEventListener("scroll", throttleHandleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", throttleHandleScroll);
   }, []);
 
   return data;
 };
+
+function throttle(cb, delay = 1000) {
+  let lastCall = 0;
+  return (...args) => {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      cb(...args);
+      lastCall = now;
+    }
+  };
+}
 
 export default useScroll;
