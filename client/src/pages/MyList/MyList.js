@@ -2,7 +2,7 @@ import { Anchor, Box, Skeleton, Text } from "@mantine/core";
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Country } from "../../components";
-import { ToggleContext } from "../Layout/Layout";
+import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./MyListStyle";
 import handleViewport from "react-in-viewport";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const ViewportCountry = handleViewport(Country, { threshold: 0 });
 
 function MyList() {
-  const { setPathName } = useContext(ToggleContext);
+  const { setPathName } = useContext(PathNameContext);
 
   const { data: myList, status } = useSelector((state) => state.myList);
 

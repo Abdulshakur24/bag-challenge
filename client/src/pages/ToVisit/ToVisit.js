@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Country } from "../../components";
 import { fetchCountries } from "../../redux/slicers/toVisit";
-import { ToggleContext } from "../Layout/Layout";
+import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./ToVisitStyle";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -17,11 +17,10 @@ function ToVisit() {
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState([]);
   const [isNameSorted, setIsNameSorted] = useState(false);
-  const { setPathName } = useContext(ToggleContext);
+  const { setPathName } = useContext(PathNameContext);
   const { classes } = useStyles();
 
-  const { status } = useSelector((state) => state.toVisit);
-  const { data: toVisits } = useSelector((state) => state.toVisit);
+  const { data: toVisits, status } = useSelector((state) => state.toVisit);
   const { data: visited } = useSelector((state) => state.visited);
 
   useEffect(() => {
