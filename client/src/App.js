@@ -1,9 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./pages/Layout/Layout";
-import Home from "./pages/Home/Home";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import { Layout, Home, Login, Register } from "./pages";
 import { MyList, ToVisit, Visited, Details } from "./pages";
 
 function App() {
