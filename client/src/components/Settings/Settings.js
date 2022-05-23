@@ -17,7 +17,7 @@ import { ToggleContext } from "../../pages/Layout/Layout";
 
 function Settings() {
   const [confirmLogout, setConfirmLogout] = useState(false);
-  const { toggle, setToggle } = useContext(ToggleContext);
+  const { setToggle } = useContext(ToggleContext);
   const { name, email, profileUrl } = useSelector((state) => state.user.data);
   const { classes } = useStyles();
   const clipboard = useClipboard({ timeout: 500 });
@@ -25,7 +25,9 @@ function Settings() {
   const dispatch = useDispatch();
 
   const handleRoute = () => {
-    setToggle({ ...toggle, burger: false });
+    setToggle((prev) => {
+      return { ...prev, burger: false };
+    });
   };
 
   const [opened, setOpened] = useState(false);
@@ -91,7 +93,26 @@ function Settings() {
           Visited
         </Anchor>
       </Box>
+
       <Box my={"1rem"}>
+        <Button
+          sx={() => {
+            return { width: "100%" };
+          }}
+          mb="1rem"
+          onClick={() =>
+            setToggle((prev) => {
+              return {
+                ...prev,
+                modal: false,
+                burger: false,
+                search: true,
+              };
+            })
+          }
+        >
+          Global Search
+        </Button>
         {confirmLogout ? (
           <Box className={classes.signout}>
             <Text>Are you sure?</Text>
