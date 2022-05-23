@@ -14,11 +14,12 @@ import Preferences from "../../components/Preferences/Preferences";
 import { useStyles } from "./LayoutStyle";
 import useScroll from "../../hooks/useScroll";
 import { useSelector } from "react-redux";
-import { Settings } from "../../components";
+import { SearchModal, Settings } from "../../components";
 
 const initialToggle = {
   burger: false,
   search: false,
+  modal: false,
 };
 
 export const ToggleContext = createContext(initialToggle);
@@ -45,90 +46,126 @@ function Layout() {
 
   const currentPrimaryColor = theme.colors[theme.primaryColor][5];
 
-  const [opened, setOpened] = useState(false);
   const navigator = useNavigate();
 
   return (
-    <Container className={classes.container}>
-      <ToggleContext.Provider value={{ toggle, setToggle }}>
-        <PathNameContext.Provider value={{ pathName, setPathName }}>
-          <Box className={`${navClassList.join(" ")} ${classes.box}`}>
-            <Logo
-              onClick={user ? () => navigator("/home") : () => {}}
-              fill={currentPrimaryColor}
-              style={{ cursor: user ? "pointer" : "unset" }}
-            />
-            <Burger
-              onClick={() => setToggle({ ...toggle, burger: !toggle.burger })}
-              size={"md"}
-              className={classes.burger}
-              opened={toggle.burger}
-              color={currentPrimaryColor}
-            />
+    <>
+      <SearchModal toggle={toggle} setToggle={setToggle} />
+      <Container className={classes.container}>
+        <ToggleContext.Provider value={{ toggle, setToggle }}>
+          <PathNameContext.Provider value={{ pathName, setPathName }}>
+            <Box className={`${navClassList.join(" ")} ${classes.box}`}>
+              <Logo
+                onClick={user ? () => navigator("/home") : () => {}}
+                fill={currentPrimaryColor}
+                style={{ cursor: user ? "pointer" : "unset" }}
+              />
+              <Burger
+                onClick={() =>
+                  setToggle({
+                    ...toggle,
+                    burger: !toggle.burger,
+                    modal: false,
+                    search: false,
+                  })
+                }
+                size={"md"}
+                className={classes.burger}
+                opened={toggle.burger}
+                color={currentPrimaryColor}
+              />
 
-            <Box className={classes.desktopInfo}>
-              {user && (
-                <>
-                  <Text>Hey, {user.name}</Text>
+              <Box className={classes.desktopInfo}>
+                {user && (
+                  <>
+                    <Text>Hey, {user.name}</Text>
+                    <Avatar
+                      className={classes.avatar}
+                      radius={"100%"}
+                      onClick={() =>
+                        setToggle((prev) => {
+                          return {
+                            ...prev,
+                            modal: true,
+                            burger: false,
+                            search: false,
+                          };
+                        })
+                      }
+                      src={user.profileUrl}
+                      alt={user.name}
+                    />
+                  </>
+                )}
+                {!user && (
                   <Avatar
                     className={classes.avatar}
                     radius={"100%"}
-                    onClick={() => setOpened(true)}
-                    src={user.profileUrl}
-                    alt={user.name}
+                    onClick={() =>
+                      setToggle((prev) => {
+                        return {
+                          ...prev,
+                          modal: true,
+                          burger: false,
+                          search: false,
+                        };
+                      })
+                    }
+                    src={null}
+                    alt={"Guest"}
                   />
-                </>
-              )}
-              {!user && (
-                <Avatar
-                  className={classes.avatar}
-                  radius={"100%"}
-                  onClick={() => setOpened(true)}
-                  src={null}
-                  alt={"Guest"}
-                />
-              )}
+                )}
 
-              <Modal
-                className={classes.modal}
-                opened={opened}
-                onClose={() => setOpened(false)}
-                transition="fade"
-                transitionDuration={400}
+                <Modal
+                  className={classes.modal}
+                  opened={toggle.modal}
+                  onClose={() =>
+                    setToggle((prev) => {
+                      return {
+                        ...prev,
+                        modal: false,
+                        burger: false,
+                        search: false,
+                      };
+                    })
+                  }
+                  transition="fade"
+                  transitionDuration={400}
+                  title={
+                    <Text size="xl" weight={700} color={currentPrimaryColor}>
+                      {pathName}
+                    </Text>
+                  }
+                  overflow="outside"
+                >
+                  {user && <Settings />}
+                  <Preferences />
+                </Modal>
+              </Box>
+
+              <Drawer
+                opened={toggle.burger}
+                onClose={() => setToggle({ ...toggle, burger: false })}
                 title={
                   <Text size="xl" weight={700} color={currentPrimaryColor}>
                     {pathName}
                   </Text>
                 }
-                overflow="outside"
+                position="right"
+                padding={"lg"}
+                className={classes.drawer}
               >
-                {user && <Settings />}
+                {(user && <Settings />) || null}
                 <Preferences />
-              </Modal>
+              </Drawer>
             </Box>
-
-            <Drawer
-              opened={toggle.burger}
-              onClose={() => setToggle({ ...toggle, burger: false })}
-              title={
-                <Text size="xl" weight={700} color={currentPrimaryColor}>
-                  {pathName}
-                </Text>
-              }
-              position="right"
-              padding={"lg"}
-              className={classes.drawer}
-            >
-              {(user && <Settings />) || null}
-              <Preferences />
-            </Drawer>
-          </Box>
-          <Box className={classes.outlet}>
-            <Outlet />
-          </Box>
-        </PathNameContext.Provider>
-      </ToggleContext.Provider>
-    </Container>
+            <Box className={classes.outlet}>
+              <Outlet />
+            </Box>
+          </PathNameContext.Provider>
+        </ToggleContext.Provider>
+      </Container>
+    </>
   );
 }
 
