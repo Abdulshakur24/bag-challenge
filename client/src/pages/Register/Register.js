@@ -19,7 +19,7 @@ import { showNotification } from "@mantine/notifications";
 import { fetchAllVisits } from "../../redux/slicers/visited";
 import { fetchAllList } from "../../redux/slicers/myList";
 import { getBase64 } from "../../utils/helpers";
-import { PathNameContext } from "../../pages/Layout/Layout";
+import { PathNameContext } from "../Layout/Layout";
 import { fetchCountries } from "../../redux/slicers/toVisit";
 
 const controller = new AbortController();
