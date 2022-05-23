@@ -136,6 +136,7 @@ function Login() {
 
           <Group position="right" my="xl">
             <Button
+              data-testid="button"
               disabled={!form.values.password.length}
               loading={isProcessing}
               type="submit"
