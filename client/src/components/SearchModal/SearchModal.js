@@ -84,8 +84,8 @@ function SearchGlobally({ query }) {
             if (response.status === 404) {
               return showNotification({
                 color: "red",
-                message: `'${query}' is not a countries.`,
-                autoClose: 1000,
+                message: `'${query}' is not a country.`,
+                autoClose: 1500,
               });
             }
             showNotification({

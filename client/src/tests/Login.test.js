@@ -60,7 +60,7 @@ describe("A form on error", () => {
 });
 
 describe("A form on fulfilled", () => {
-  test("Expect no invalid email and when submit button is triggered.", async () => {
+  test("Expect no invalid email and password when submit button is triggered.", async () => {
     render(<App />);
 
     const emailInput = screen.getByPlaceholderText(/Email/i);
