@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const fetchCountry = axios.create({
   baseURL: "https://restcountries.com/v3.1",
 });
 
@@ -13,5 +13,3 @@ export const getBase64 = (file) => {
     };
   });
 };
-
-export const fetchCountryByName = (query) => instance.get(`/name/${query}`);
