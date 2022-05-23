@@ -2,7 +2,7 @@ import { Box, Button, Input, Menu, Skeleton, Text } from "@mantine/core";
 import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Country, SearchModal } from "../../components";
+import { Country } from "../../components";
 import { fetchCountries } from "../../redux/slicers/toVisit";
 import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./ToVisitStyle";
@@ -131,9 +131,7 @@ function ToVisit() {
           </Menu.Item>
         </Menu>
       </Box>
-
       <Box className={classes.body}>
-        <SearchModal />
         {searchFilter().length !== 0 ? (
           searchFilter().map((props) => (
             <Skeleton key={props.area} visible={status === "loading"}>
