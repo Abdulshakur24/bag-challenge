@@ -365,7 +365,7 @@ function Country(props) {
             fullWidth
             style={{ marginTop: 14 }}
           >
-            Visit
+            More Details.
           </Button>
         </Card>
       ) : (
