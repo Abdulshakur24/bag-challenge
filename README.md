@@ -1,5 +1,7 @@
 ![RESTful API](./preview.jpg)
 
+This project is deployed at https://bag-2022.herokuapp.com
+
 ## Brief:
 
 This project uses a third-party API called [restcountries](https://restcountries.com) to fetch countries that allow users to explore and save any country to MongoDB (can register with unverified email). It also uses a RESTful API(CRUD Operation).
