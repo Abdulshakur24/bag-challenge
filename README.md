@@ -19,7 +19,6 @@ _Generated with [CRA](https://create-react-app.dev/) version 18.0.0._
 
 ## Backend libraries used:
 
-- NodeJS
 - Express
 - JSON Web Token
 - Bcrypt
