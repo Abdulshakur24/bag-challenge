@@ -24,5 +24,3 @@ _Generated with [CRA](https://create-react-app.dev/) version 18.0.0._
 - Bcrypt
 - Joi (Check Validations)
 - Mongoose
-
-## Live: [bag](https://bag-2022.herokuapp.com)
