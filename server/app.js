@@ -51,6 +51,9 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5010;
+
 app.listen(PORT, () =>
   console.log(`Listening on port http://localhost:${PORT}`)
 );
+
+require("./preventDynosFromIdling");
