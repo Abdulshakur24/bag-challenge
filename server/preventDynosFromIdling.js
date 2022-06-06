@@ -21,4 +21,4 @@ function startKeepAlive() {
   }, 29 * 60 * 1000); // load every 58 minutes
 }
 
-startKeepAlive();
+// startKeepAlive();
