@@ -8,7 +8,6 @@ import {
   Text,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import axios from "../../axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStyles } from "./LoginStyle";
@@ -20,6 +19,7 @@ import { showNotification } from "@mantine/notifications";
 import { PathNameContext } from "../Layout/Layout";
 import { fetchCountries } from "../../redux/slicers/toVisit";
 import { AppDispatch } from "src/redux/store";
+import { restfulAPI } from "src/utils/api";
 
 const controller = new AbortController();
 
@@ -53,7 +53,7 @@ function Login(): JSX.Element {
   const handleSignIn = async (forms: { email: string; password: string }) => {
     setIsProcessing(() => true);
     try {
-      const { data } = await axios.post("/user/signin", forms);
+      const { data } = await restfulAPI.post("/user/signin", forms);
 
       showNotification({ message: `Welcome ${data.name}!` });
       dispatch(loadUser(data));
@@ -81,7 +81,7 @@ function Login(): JSX.Element {
     const getUser = async () => {
       setIsProcessing(true);
       try {
-        const { data } = await axios.get("/user/token", {
+        const { data } = await restfulAPI.get("/user/token", {
           signal: controller.signal,
           headers: {
             authorization: `Bearer ${token}`,
