@@ -17,6 +17,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import handleViewport from "react-in-viewport";
 import { AppDispatch, RootState } from "src/redux/store";
+import { useGetByRegionQuery } from "src/utils/api";
 
 const ViewportCountry = handleViewport(Country, { threshold: 0 });
 
@@ -27,6 +28,8 @@ function ToVisit() {
   const [isNameSorted, setIsNameSorted] = useState(false);
   const { setPathName } = useContext(PathNameContext);
   const { classes } = useStyles();
+
+  useGetByRegionQuery("africa");
 
   const { data: toVisits, status } = useSelector(
     (state: RootState) => state.toVisit
