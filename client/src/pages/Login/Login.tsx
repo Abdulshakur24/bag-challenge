@@ -17,7 +17,6 @@ import { fetchAllList } from "../../redux/slicers/myList";
 import { useDispatch } from "react-redux";
 import { showNotification } from "@mantine/notifications";
 import { PathNameContext } from "../Layout/Layout";
-import { fetchCountries } from "../../redux/slicers/toVisit";
 import { AppDispatch } from "src/redux/store";
 import { restfulAPI } from "src/utils/api";
 
@@ -54,11 +53,9 @@ function Login(): JSX.Element {
     setIsProcessing(() => true);
     try {
       const { data } = await restfulAPI.post("/user/signin", forms);
-
       showNotification({ message: `Welcome ${data.name}!` });
       dispatch(loadUser(data));
       setIsProcessing(() => false);
-      dispatch(fetchCountries("africa"));
       dispatch(fetchAllVisits(data.token));
       dispatch(fetchAllList(data.token));
       navigator("/home", { replace: true });
@@ -94,7 +91,6 @@ function Login(): JSX.Element {
         });
         dispatch(loadUser(data));
         setIsProcessing(false);
-        dispatch(fetchCountries("africa"));
         dispatch(fetchAllVisits(data.token));
         dispatch(fetchAllList(data.token));
         navigator("/home", { replace: true });
