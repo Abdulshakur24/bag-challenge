@@ -11,12 +11,14 @@ import {
   REGISTER,
 } from "reduxjs-toolkit-persist";
 import storage from "reduxjs-toolkit-persist/lib/storage";
+import { restcountriesAPI } from "src/utils/api";
 
 const rootReducer = combineReducers({
   user,
   toVisit,
   myList,
   visited,
+  [restcountriesAPI.reducerPath]: restcountriesAPI.reducer,
 });
 
 const persistConfig = {
@@ -35,7 +37,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(restcountriesAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
