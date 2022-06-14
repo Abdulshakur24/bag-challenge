@@ -20,8 +20,10 @@ export const PrimaryColorContext = createContext<PrimaryColorInterface | null>(
 
 function Theme({ children }) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
-    localStorage.getItem("colorScheme") as ColorScheme | "light"
+    (localStorage.getItem("colorScheme") as ColorScheme) || "light"
   );
+
+  console.log(colorScheme);
 
   const [primaryColor, setPrimaryColor] = useState<
     DeepPartial<DefaultMantineColor>
