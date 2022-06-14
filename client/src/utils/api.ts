@@ -20,7 +20,6 @@ export const restcountriesAPI = createApi({
       query: (region) => `region/${region}`,
       async onQueryStarted(region, { dispatch }) {
         dispatch(fetchCountries("africa"));
-        console.log(region);
       },
     }),
   }),

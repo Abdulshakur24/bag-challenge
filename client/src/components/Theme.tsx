@@ -23,8 +23,6 @@ function Theme({ children }) {
     (localStorage.getItem("colorScheme") as ColorScheme) || "light"
   );
 
-  console.log(colorScheme);
-
   const [primaryColor, setPrimaryColor] = useState<
     DeepPartial<DefaultMantineColor>
   >((localStorage.getItem("primaryColor") as string | undefined) || "lime");
