@@ -54,12 +54,12 @@ function SearchModal({ toggle, setToggle }: ToggleProps): JSX.Element {
       title={
         <Input
           placeholder="Search Any Country."
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            debounceQuery(e.target.value);
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) => {
+            debounceQuery(target.value);
           }}
         />
       }
-      overflow="inside"
+      overflow="outside"
     >
       <Box>
         <SearchGlobally query={query} />
