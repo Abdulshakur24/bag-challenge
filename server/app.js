@@ -56,4 +56,4 @@ app.listen(PORT, () =>
   console.log(`Listening on port http://localhost:${PORT}`)
 );
 
-require("./preventDynosFromIdling");
+// require("./preventDynosFromIdling");

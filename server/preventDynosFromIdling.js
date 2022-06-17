@@ -1,7 +1,10 @@
 const { default: axios } = require("axios");
 
-// By default, Heroku dyno ildes after half an hour of inactivity.
-// so we want to ping these dyno after every 29 minutes, leaving no chance for dynos to idle.
+/* 
+By default, Heroku dyno ildes after half an hour of inactivity, 
+so we want to ping these dyno after every 29 minutes, leaving no chance for dynos to idle.
+*/
+
 function startKeepAlive() {
   let counts = 0;
   setInterval(function () {
@@ -21,4 +24,4 @@ function startKeepAlive() {
   }, 29 * 60 * 1000); // load every 29 minutes
 }
 
-// startKeepAlive();
+startKeepAlive();
