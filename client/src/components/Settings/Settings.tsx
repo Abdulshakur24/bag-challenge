@@ -8,7 +8,7 @@ import {
   Text,
 } from "@mantine/core";
 import React, { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useStyles } from "./SettingsStyle";
 import { signOut } from "../../redux/slicers/user";
 import { useClipboard } from "@mantine/hooks";
@@ -20,7 +20,8 @@ function Settings(): JSX.Element {
   const [confirmLogout, setConfirmLogout] = useState(false);
   const { setToggle } = useContext(ToggleContext);
   const { name, email, profileUrl } = useSelector(
-    (state: RootState) => state.user.data
+    (state: RootState) => state.user.data,
+    shallowEqual
   );
   const { classes } = useStyles();
   const clipboard = useClipboard({ timeout: 500 });
