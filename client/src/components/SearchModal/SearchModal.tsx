@@ -6,7 +6,6 @@ import {
   Image,
   Input,
   Modal,
-  Skeleton,
   Tabs,
   Text,
   useMantineTheme,
@@ -26,13 +25,12 @@ import {
   ToggleProps,
 } from "src/types/defaults";
 import { showNotification } from "@mantine/notifications";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import handleViewport from "react-in-viewport";
+import React, { ChangeEvent, memo, useEffect, useState } from "react";
 import { getFullNameByISO3 } from "src/pages/Details/countriesByISO3";
 import { useStyles } from "./SearchModalStyle";
 import { thirdPartyAPI } from "src/utils/api";
 
-const ViewportCountry = handleViewport(Country, { threshold: 0 });
+const MemoizedCountry = memo(Country);
 
 function SearchModal({ toggle, setToggle }: ToggleProps): JSX.Element {
   const [query, setQuery] = useState("");
@@ -90,6 +88,14 @@ function SearchGlobally({ query }: SearchGloballyProps): JSX.Element {
               autoClose: 1500,
             });
           }
+          if (response.status === 0) {
+            showNotification({
+              color: "red",
+              message: `Please check your connection.`,
+              autoClose: 1500,
+            });
+            return;
+          }
           showNotification({
             color: "red",
             message: response.data.message,
@@ -124,7 +130,7 @@ function SearchGlobally({ query }: SearchGloballyProps): JSX.Element {
         <Box className={classes.countries}>
           {countries.length ? (
             countries.map((props) => (
-              <ViewportCountry
+              <MemoizedCountry
                 key={props.area}
                 area={props.area}
                 name={props.name}
@@ -267,8 +273,6 @@ function Country({
   population,
   region,
   capital,
-  inViewport,
-  forwardedRef,
   info,
   setDetails,
   setActiveTab,
@@ -280,8 +284,8 @@ function Country({
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <Box ref={forwardedRef}>
-      {inViewport ? (
+    <Box>
+      {
         <Card shadow="sm" p="lg">
           <Card.Section>
             <Image
@@ -337,14 +341,12 @@ function Country({
             More Details.
           </Button>
         </Card>
-      ) : (
-        <Skeleton width={"100%"} height="339.32px" />
-      )}
+      }
     </Box>
   );
 }
 
-const Border = ({ iso3 }: BorderProps): JSX.Element => {
+function Border({ iso3 }: BorderProps): JSX.Element {
   const { classes } = useStyles();
 
   const name = getFullNameByISO3(iso3).name;
@@ -355,6 +357,6 @@ const Border = ({ iso3 }: BorderProps): JSX.Element => {
       <Text>{name}</Text>
     </Box>
   );
-};
+}
 
 export default SearchModal;
