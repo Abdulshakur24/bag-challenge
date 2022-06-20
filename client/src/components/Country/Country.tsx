@@ -4,13 +4,12 @@ import {
   Card,
   Group,
   Image,
-  Skeleton,
   Text,
   useMantineTheme,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postVisit } from "src/redux/slicers/visited";
 import { useStyles } from "./CountryStyle";
@@ -26,13 +25,14 @@ function Country({
   capital,
   area,
   hasVisited,
-  inViewport,
-  forwardedRef,
   info,
 }: CountryProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigator = useNavigate();
-  const { data: user } = useSelector((state: RootState) => state.user);
+  const { data: user } = useSelector(
+    (state: RootState) => state.user,
+    shallowEqual
+  );
 
   const { classes } = useStyles();
 
@@ -52,8 +52,8 @@ function Country({
   };
 
   return (
-    <Box className={classes.box} ref={forwardedRef}>
-      {inViewport ? (
+    <Box className={classes.box}>
+      {
         <Card shadow="sm" p="lg">
           <Card.Section>
             <Image
@@ -108,9 +108,7 @@ function Country({
             {hasVisited ? "Re-visit" : "Visit"}
           </Button>
         </Card>
-      ) : (
-        <Skeleton width={"100%"} height="339.32px" />
-      )}
+      }
     </Box>
   );
 }
