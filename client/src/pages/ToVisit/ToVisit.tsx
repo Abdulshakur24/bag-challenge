@@ -2,6 +2,7 @@ import { Box, Button, Input, Menu, Skeleton, Text } from "@mantine/core";
 import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import React, {
   ChangeEvent,
+  memo,
   Ref,
   useContext,
   useEffect,
@@ -15,11 +16,11 @@ import { PathNameContext } from "src/pages/Layout/Layout";
 import { useStyles } from "./ToVisitStyle";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
-import handleViewport from "react-in-viewport";
 import { AppDispatch, RootState } from "src/redux/store";
 import { useGetByRegionQuery } from "src/utils/api";
+import { shallowEqual } from "react-redux";
 
-const ViewportCountry = handleViewport(Country, { threshold: 0 });
+const MemoizedCountry = memo(Country);
 
 function ToVisit() {
   const [region, setRegion] = useState("Africa");
@@ -32,9 +33,13 @@ function ToVisit() {
   useGetByRegionQuery("africa");
 
   const { data: toVisits, status } = useSelector(
-    (state: RootState) => state.toVisit
+    (state: RootState) => state.toVisit,
+    shallowEqual
   );
-  const { data: visited } = useSelector((state: RootState) => state.visited);
+  const { data: visited } = useSelector(
+    (state: RootState) => state.visited,
+    shallowEqual
+  );
 
   useEffect(() => {
     setPathName("To Visit");
@@ -63,7 +68,7 @@ function ToVisit() {
     dispatch(fetchCountries(slug));
   };
 
-  const alphabeticalSorter = (array = []): any[] => {
+  const alphabeticalSorter = (array): any[] => {
     return isNameSorted
       ? array.sort((a, b) =>
           a.name.common.localeCompare(b.name.common, "en", {
@@ -96,7 +101,9 @@ function ToVisit() {
     });
   };
 
-  const { scrollIntoView, targetRef } = useScrollIntoView({ offset: 0 });
+  const { scrollIntoView, targetRef } = useScrollIntoView({
+    offset: 100,
+  });
 
   return (
     <>
@@ -151,7 +158,7 @@ function ToVisit() {
         {searchFilter().length !== 0 ? (
           searchFilter().map((props) => (
             <Skeleton key={props.area} visible={status === "loading"}>
-              <ViewportCountry
+              <MemoizedCountry
                 area={props.area}
                 name={props.name}
                 flags={props.flags}

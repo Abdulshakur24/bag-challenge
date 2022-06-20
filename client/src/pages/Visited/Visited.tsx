@@ -1,19 +1,19 @@
 import { Anchor, Box, Skeleton, Text } from "@mantine/core";
-import React, { useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { memo, useContext, useEffect } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 import Country from "src/components/Country/Country";
 import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./VisitedStyle";
-import handleViewport from "react-in-viewport";
 import { Link } from "react-router-dom";
 import { RootState } from "src/redux/store";
 
-const ViewportCountry = handleViewport(Country, { threshold: 0 });
+const MemoizedCountry = memo(Country);
 
 function Visited() {
   const { setPathName } = useContext(PathNameContext);
   const { data: visited, status } = useSelector(
-    (state: RootState) => state.visited
+    (state: RootState) => state.visited,
+    shallowEqual
   );
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function Visited() {
     <Box className={classes.body}>
       {visited.map((props) => (
         <Skeleton key={props.area} visible={status === "loading"}>
-          <ViewportCountry
+          <MemoizedCountry
             area={props.area}
             name={props.name}
             flags={props.flags}
