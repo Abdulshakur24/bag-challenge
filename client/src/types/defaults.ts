@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export interface CountryProps {
   name: {
     common: string;
@@ -58,7 +60,13 @@ export interface BorderProps {
 
 export interface ToggleProps {
   toggle: { burger?: boolean; search?: boolean; modal?: boolean };
-  setToggle: Function;
+  setToggle: Dispatch<
+    React.SetStateAction<{
+      burger: boolean;
+      search: boolean;
+      modal: boolean;
+    }>
+  >;
 }
 
 export interface postVisitProps {
@@ -99,5 +107,5 @@ export interface themeProps {
 
 export interface PathNameContextProps {
   pathName: string;
-  setPathName: Function;
+  setPathName: Dispatch<React.SetStateAction<string>>;
 }
