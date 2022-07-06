@@ -1,6 +1,5 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Theme from "./components/Theme";
 import { persistStore } from "reduxjs-toolkit-persist";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -10,6 +9,7 @@ import App from "./App";
 import ToggleProvider from "./contexts/ToggleProvider";
 import SearchModal from "src/components/SearchModal/SearchModal";
 import PathProvider from "./contexts/PathProvider";
+import ThemeProvider from "./contexts/ThemeProvider";
 
 const persistor = persistStore(store);
 
@@ -20,12 +20,12 @@ root.render(
     <PersistGate persistor={persistor} loading={true}>
       <ToggleProvider>
         <PathProvider>
-          <Theme>
+          <ThemeProvider>
             <SearchModal />
             <Router>
               <App />
             </Router>
-          </Theme>
+          </ThemeProvider>
         </PathProvider>
       </ToggleProvider>
     </PersistGate>
