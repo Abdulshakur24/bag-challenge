@@ -6,9 +6,8 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
-import { useContext } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
-import { PrimaryColorContext } from "../Theme";
+import { usePrimaryColor } from "src/contexts/ThemeProvider";
 import { useStyles } from "./PreferencesStyle";
 
 function Preferences(): JSX.Element {
@@ -16,7 +15,7 @@ function Preferences(): JSX.Element {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { colors, primaryColor } = useMantineTheme();
 
-  const { setPrimaryColor } = useContext(PrimaryColorContext);
+  const { setPrimaryColor } = usePrimaryColor();
   return (
     <>
       <Text inherit className={classes.heading}>
