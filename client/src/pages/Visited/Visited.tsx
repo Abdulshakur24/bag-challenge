@@ -1,16 +1,16 @@
 import { Anchor, Box, Skeleton, Text } from "@mantine/core";
-import React, { memo, useContext, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import Country from "src/components/Country/Country";
-import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./VisitedStyle";
 import { Link } from "react-router-dom";
 import { RootState } from "src/redux/store";
+import { usePath } from "src/contexts/PathProvider";
 
 const MemoizedCountry = memo(Country);
 
 function Visited() {
-  const { setPathName } = useContext(PathNameContext);
+  const { setPathName } = usePath();
   const { data: visited, status } = useSelector(
     (state: RootState) => state.visited,
     shallowEqual

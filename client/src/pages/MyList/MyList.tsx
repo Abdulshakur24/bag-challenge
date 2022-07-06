@@ -1,16 +1,16 @@
 import { Anchor, Box, Skeleton, Text } from "@mantine/core";
-import React, { memo, useContext, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Country from "src/components/Country/Country";
-import { PathNameContext } from "../Layout/Layout";
 import { useStyles } from "./MyListStyle";
 import { Link } from "react-router-dom";
 import { RootState } from "src/redux/store";
+import { usePath } from "src/contexts/PathProvider";
 
 const MemoizedCountry = memo(Country);
 
 function MyList() {
-  const { setPathName } = useContext(PathNameContext);
+  const { setPathName } = usePath();
 
   const { data: myList, status } = useSelector(
     (state: RootState) => state.myList

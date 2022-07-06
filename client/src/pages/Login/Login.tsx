@@ -8,7 +8,7 @@ import {
   Text,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStyles } from "./LoginStyle";
 import { loadUser } from "../../redux/slicers/user";
@@ -16,16 +16,17 @@ import { fetchAllVisits } from "../../redux/slicers/visited";
 import { fetchAllList } from "../../redux/slicers/myList";
 import { useDispatch } from "react-redux";
 import { showNotification } from "@mantine/notifications";
-import { PathNameContext } from "../Layout/Layout";
 import { AppDispatch } from "src/redux/store";
 import { restfulAPI } from "src/utils/api";
+import { usePath } from "src/contexts/PathProvider";
 
 const controller = new AbortController();
 
 function Login(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const navigator = useNavigate();
-  const { setPathName } = useContext(PathNameContext);
+  const { setPathName } = usePath();
+
   const form = useForm({
     initialValues: {
       email: "",

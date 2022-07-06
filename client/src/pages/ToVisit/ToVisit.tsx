@@ -4,7 +4,6 @@ import React, {
   ChangeEvent,
   memo,
   Ref,
-  useContext,
   useEffect,
   useLayoutEffect,
   useState,
@@ -12,13 +11,13 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import Country from "src/components/Country/Country";
 import { fetchCountries } from "src/redux/slicers/toVisit";
-import { PathNameContext } from "src/pages/Layout/Layout";
 import { useStyles } from "./ToVisitStyle";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import { AppDispatch, RootState } from "src/redux/store";
 import { useGetByRegionQuery } from "src/utils/api";
 import { shallowEqual } from "react-redux";
+import { usePath } from "src/contexts/PathProvider";
 
 const MemoizedCountry = memo(Country);
 
@@ -27,7 +26,7 @@ function ToVisit() {
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState([]);
   const [isNameSorted, setIsNameSorted] = useState(false);
-  const { setPathName } = useContext(PathNameContext);
+  const { setPathName } = usePath();
   const { classes } = useStyles();
 
   useGetByRegionQuery("africa");

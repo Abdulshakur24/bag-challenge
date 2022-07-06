@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React, { useContext, useEffect, useState, useId } from "react";
+import React, { useEffect, useState, useId } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStyles } from "./RegisterStyle";
 import { loadUser } from "../../redux/slicers/user";
@@ -18,10 +18,10 @@ import { showNotification } from "@mantine/notifications";
 import { fetchAllVisits } from "../../redux/slicers/visited";
 import { fetchAllList } from "../../redux/slicers/myList";
 import { getBase64 } from "../../utils/helpers";
-import { PathNameContext } from "../Layout/Layout";
 import { fetchCountries } from "../../redux/slicers/toVisit";
 import { AppDispatch } from "src/redux/store";
 import { restfulAPI } from "src/utils/api";
+import { usePath } from "src/contexts/PathProvider";
 
 const controller = new AbortController();
 
@@ -50,6 +50,8 @@ function Register() {
         value !== password ? "Passwords did not match" : null,
     },
   });
+
+  const { setPathName } = usePath();
 
   const { classes } = useStyles();
 
@@ -138,8 +140,6 @@ function Register() {
     if (token) getUser();
     return () => controller.abort();
   }, [dispatch, navigator]);
-
-  const { setPathName } = useContext(PathNameContext);
 
   useEffect(() => {
     setPathName("Register");
