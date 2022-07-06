@@ -22,18 +22,20 @@ import {
   BorderProps,
   CountryProps,
   SearchGloballyProps,
-  ToggleProps,
 } from "src/types/defaults";
 import { showNotification } from "@mantine/notifications";
 import React, { ChangeEvent, memo, useEffect, useState } from "react";
 import { getFullNameByISO3 } from "src/pages/Details/countriesByISO3";
 import { useStyles } from "./SearchModalStyle";
 import { thirdPartyAPI } from "src/utils/api";
+import { useToggle } from "src/contexts/ToggleProvider";
 
 const MemoizedCountry = memo(Country);
 
-function SearchModal({ toggle, setToggle }: ToggleProps): JSX.Element {
+function SearchModal(): JSX.Element {
   const [query, setQuery] = useState("");
+  const { classes } = useStyles();
+  const { setToggle, toggle } = useToggle();
 
   const debounceQuery = debounce((text: string) => {
     setQuery(() => text);
@@ -45,7 +47,7 @@ function SearchModal({ toggle, setToggle }: ToggleProps): JSX.Element {
       size={"xl"}
       opened={toggle.search}
       onClose={() =>
-        setToggle((prev: object) => {
+        setToggle((prev) => {
           return { ...prev, search: false };
         })
       }
@@ -58,6 +60,7 @@ function SearchModal({ toggle, setToggle }: ToggleProps): JSX.Element {
         />
       }
       overflow="outside"
+      className={classes.modalWrapper}
     >
       <Box>
         <SearchGlobally query={query} />
