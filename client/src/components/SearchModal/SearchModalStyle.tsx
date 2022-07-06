@@ -6,6 +6,13 @@ export const useStyles = createStyles((theme: MantineTheme) => {
   const rgba = (alpha: number): string => theme.fn.rgba(primaryColor[8], alpha);
 
   return {
+    modalWrapper: {
+      // eslint-disable-next-line no-useless-computed-key
+      [".mantine-14ux9b6"]: {
+        margin: "unset",
+        minHeight: "497.2px",
+      },
+    },
     countries: {
       padding: "0.5rem",
       display: "grid",
