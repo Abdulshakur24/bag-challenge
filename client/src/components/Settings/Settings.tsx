@@ -7,18 +7,18 @@ import {
   Popover,
   Text,
 } from "@mantine/core";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useStyles } from "./SettingsStyle";
-import { signOut } from "../../redux/slicers/user";
+import { signOut } from "src/redux/slicers/user";
 import { useClipboard } from "@mantine/hooks";
 import { Link } from "react-router-dom";
-import { ToggleContext } from "../../pages/Layout/Layout";
 import { RootState } from "src/redux/store";
+import { useToggle } from "src/contexts/ToggleProvider";
 
 function Settings(): JSX.Element {
   const [confirmLogout, setConfirmLogout] = useState(false);
-  const { setToggle } = useContext(ToggleContext);
+  const { setToggle } = useToggle();
   const { name, email, profileUrl } = useSelector(
     (state: RootState) => state.user.data,
     shallowEqual
@@ -107,7 +107,6 @@ function Settings(): JSX.Element {
           onClick={() =>
             setToggle((prev) => {
               return {
-                ...prev,
                 modal: false,
                 burger: false,
                 search: true,
