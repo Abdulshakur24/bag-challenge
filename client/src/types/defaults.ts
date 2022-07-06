@@ -80,6 +80,10 @@ export interface getFullNameByISO3Interface {
   iso3: string;
 }
 
+export interface ThemeProps {
+  setPrimaryColor: Dispatch<React.SetStateAction<string>>;
+}
+
 export interface themeProps {
   breakpoints: {
     xs: number;
