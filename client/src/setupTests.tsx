@@ -1,16 +1,23 @@
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import Theme from "./components/Theme";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter as Router } from "react-router-dom";
+import ThemeProvider from "./contexts/ThemeProvider";
+import { ReactNode } from "react";
+import ToggleProvider from "./contexts/ToggleProvider";
+import PathProvider from "./contexts/PathProvider";
 
-const AllProviders = ({ children }): JSX.Element => {
+const AllProviders = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <Provider store={store}>
-      <Theme>
-        <Router>{children}</Router>
-      </Theme>
+      <ToggleProvider>
+        <ThemeProvider>
+          <PathProvider>
+            <Router>{children}</Router>
+          </PathProvider>
+        </ThemeProvider>
+      </ToggleProvider>
     </Provider>
   );
 };
