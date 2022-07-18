@@ -9,7 +9,9 @@ export const thirdPartyAPI: AxiosInstance = axios.create({
 const isProduction = process.env.NODE_ENV === "production";
 
 export const restfulAPI: AxiosInstance = axios.create({
-  baseURL: isProduction ? "api/" : "http://localhost:5010/api/",
+  baseURL: isProduction
+    ? "https://explore-countries-2022.herokuapp.com/api"
+    : "http://localhost:5010/api/",
 });
 
 export const restcountriesAPI = createApi({
